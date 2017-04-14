@@ -1,0 +1,163 @@
+@import './variables';
+
+/*reset base styles*/
+body,
+html,
+button,
+input,
+textarea,
+form,
+ul,
+li,
+div,
+span,
+p,
+h1,
+h2,
+h3,
+h4 {
+    padding: 0;
+    margin: 0;
+    outline: none;
+    border: none;
+    background: none;
+    list-style: none;
+    font-family: 'Roboto', sans-serif;
+}
+/* end of reseting styles */
+
+
+body, #root, .content {
+    display: flex;
+    overflow: hidden;
+    font-size: 100%;
+    width: 100vw;
+    height: 100vh;
+}
+
+div,
+nav,
+input {
+    box-sizing: border-box;
+}
+
+a,
+button {
+    cursor: pointer;
+}
+
+button:hover{
+    opacity: .6;
+}
+
+.main-frame {
+    float: left;
+    box-sizing: border-box;
+}
+
+.right {
+    float: right;
+}
+
+.left {
+    float: left;
+}
+
+.hidden {
+    display: none;
+}
+
+
+
+
+
+
+
+
+/*pop up*/
+
+#pop-up{
+    position: absolute;
+    display: none;
+    box-sizing: border-box;
+    background-color: #fff;
+    box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.56);
+}
+
+#pop-up.active {
+    display: block;
+}
+
+#pop-up li{
+    color: #414142;
+    padding: 7px 15px;
+    font-size: .9rem;
+}
+
+/* SIDEBAR */
+aside {
+    width: 460px;
+    max-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background-color: $bright-primary;
+    transition: all .35s ease-out 0s;
+
+    @media screen and (max-width: $ipad-resolution) {
+        width: 100%;
+        height: 100vh;
+        position: absolute;
+        z-index: 9999;
+    }
+}
+
+// styles for elements when sidebar isn't expanded
+aside.toggled {
+    width: 110px;
+
+    input,
+    .search-icon,
+    .aside-user-info,
+    .aside-spend-time {
+        opacity: 0;
+        width: 0;
+        height: 0;
+        margin: 0;
+    }
+
+    .sidebar-nav {
+        display: block;
+    }
+
+    // rotate toggle button on click
+    .sidebar-toggle:before {
+        transform: rotate(225deg);
+        margin-left: 0;
+        margin-right: 5px;
+    }
+
+}
+
+/* SIDEBAR END */
+
+
+/* SECTION START */
+
+section {
+    display: flex;
+    max-height: 100vh;
+    width: calc(100vw - 460px);
+    flex-grow: 1;
+    flex-direction: column;
+    background-color: $absolute-white;
+
+    @media screen and (max-width: $ipad-resolution) {
+        margin-left: 110px;
+    }
+}
+
+section.toggled {
+    width: calc(100vw - 110px);
+}
+
+/* SECTION END */

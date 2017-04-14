@@ -1,0 +1,51 @@
+/* BACKGROUND COLORS*/
+$deep-primary: #37398D;
+$bright-primary: #3B3E99;
+$light-primary: #7073CC;
+$bright-accent: #ed145b;
+$light-accent: #F23F79;
+$light-grey: #EDEDFA;
+$absolute-white: #fff;
+
+/* TEXT COLORS*/
+$text-bright-primary: #858588;
+$text-light-primary: rgba(255, 255, 255, 0.6);
+$text-bright-accent: #ed145b;
+$text-light-black: #3B3B3C;
+$text-bright-white: #fff;
+
+/* RESOLUTIONS */
+$ipad-resolution: 768px;
+$iphone-6-plus-resolution: 414px;
+$iphone-6-resolution: 375px;
+
+/* OTHER VARIABLES*/
+$radius: 10px;
+
+/* MIXINS */
+// set icon size and background-position for :before/:after
+@mixin icon($width, $height, $positon-x, $position-y) {
+    display: block;
+    content: "";
+    width: $width;
+    height: $height;
+    background-image: url('/img/sprite.svg');
+    background-position: $positon-x $position-y;
+    background-repeat: no-repeat;
+}
+
+// set size, centrets and rounds block
+@mixin round-image($size) {
+    width: $size;
+    height: $size;
+    border-radius: 50%;
+    background-size: 100% auto;
+    background-position: center;
+}
+
+// set size, weight, color
+@mixin font($size, $weight, $color) {
+    font-size: $size;
+    font-weight: $weight;
+    color: $color;
+}

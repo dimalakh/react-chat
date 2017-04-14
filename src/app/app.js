@@ -6,6 +6,8 @@ import { Sidebar } from './components/sidebar/sidebar';
 import { Chat } from './components/chat/chat';
 import { Auth } from './components/auth/auth';
 
+import './app.scss';
+
 //Component
 class AppComponent extends Component {
     render() {
@@ -14,7 +16,7 @@ class AppComponent extends Component {
                 <Router history={browserHistory}>
                     <div>
                         <Navigation/>
-                        <Route exact path='/' component={Auth} />
+                        <Route exact path='/' component={Sidebar} />
                         <Route path='/chat' component={Chat} />
                         <Route path='/auth' component={Auth} />
                     </div>    

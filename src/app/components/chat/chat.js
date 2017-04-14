@@ -1,13 +1,24 @@
+import './chat.scss';
+
 import  React, { Component } from 'react';
+import { Sidebar } from '../sidebar/sidebar';
+import { Toolbar } from '../toolbar/toolbar';
+import { Message } from '../message/message';
+import { MessageForm } from '../message-form/message-form';
 
 export class Chat extends Component {
     render() {
         return (
-            <ul>
-                <li>Message 1</li>
-                <li>Message 2</li>
-                <li>Message 3</li>
-            </ul>
+            <div className='content'>
+                <Sidebar/>
+                <section className="main-frame">
+                    <Toolbar/>
+                    <ul className="chat-body">
+                        <Message/>
+                    </ul>
+                    <MessageForm/>
+                </section>
+            </div>
         );
     }
 } 

@@ -1,0 +1,62 @@
+@import '../../variables';
+
+.chat-message-form {
+    position: relative;
+    box-sizing: border-box;
+    padding: 20px 30px;
+
+    .inner {
+        position: relative;
+        width: 100%;
+        max-width: 500px;
+    }
+
+    .message-text {
+        float: left;
+        width: 100%;
+        max-width: 500px;
+        max-height: 112px;
+        box-sizing: border-box;
+        padding: 0 40px 0 25px;
+        border-top: 20px solid $light-grey;
+        border-bottom: 20px solid $light-grey;
+        border-radius: 28px;
+        overflow-y: auto;
+        background-color: $light-grey;
+        word-break: break-word;
+        @include font(.9rem, 400, $text-bright-primary);
+    }
+
+    .smile-icon:before {
+        position: absolute;
+        top: 20px;
+        right: 15px;
+        width: 22px;
+        height: 22px;
+        background-image: url('/img/sprite.svg');
+        @include icon(22px, 22px, -27px, -25px);
+    }
+
+    // attach file customization
+    .file-icon {
+        width: 0.1px;
+        height: 0.1px;
+        opacity: 0;
+
+        + label {
+            position: absolute;
+            cursor: pointer;
+            top: 20px;
+            right: -40px;
+        }
+
+        + label:before {
+            @include icon(22px, 22px, -27px, -2px);
+        }
+    } 
+
+    .file-icon:focus + label,
+    .file-icon  + label:hover {
+        opacity: 0.6;
+    }
+}

@@ -1,0 +1,54 @@
+@import '../../variables';
+
+.chat-body {
+    // when message is from owner of the app
+    li {
+        display: flex;
+        margin-bottom: 65px;
+        align-items: flex-end;
+        flex-wrap: wrap;
+        width: 100%;
+        justify-content: flex-start;
+
+        .user-photo {
+            margin-right: 15px;
+            background-image: url('/img/user-2.jpg');
+            @include round-image(50px);
+        }
+
+        .chat-message {
+            position: relative;
+            box-sizing: border-box;
+            max-width: calc(90% - 70px);
+            padding: 20px 25px;
+            border-radius: $radius;
+            background-color: $light-primary;
+            @include font(.9rem, 400, $text-bright-white)
+        }
+
+        time {
+            position: absolute;
+            right: 15px;
+            bottom: -25px;
+            @include font(.8rem, 400, $text-light-primary);
+        }
+    }
+
+    // when message is answer from another user
+    .is-answer{
+        flex-direction: row-reverse;
+
+        .user-photo {
+            margin: 0 0 0 15px;
+        }
+
+        .chat-message {
+            color: $text-light-black;
+            background-color: $light-grey;
+        }
+
+        time {
+            left: 15px;
+        }
+    }
+}
