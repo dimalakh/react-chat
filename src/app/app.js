@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { render } from 'react-dom';
+import { BrowserRouter as Router, Route, Link, browserHistory } from 'react-router-dom';
 import { Navigation } from './components/navigation/navigation';
 import { Sidebar } from './components/sidebar/sidebar';
 import { Chat } from './components/chat/chat';
@@ -10,11 +11,14 @@ class AppComponent extends Component {
     render() {
         return (
             <div>
-                <Navigation/>
-                <div>
-                    <Sidebar/>
-                    <Chat/>
-                </div>
+                <Router history={browserHistory}>
+                    <div>
+                        <Navigation/>
+                        <Route exact path='/' component={Auth} />
+                        <Route path='/chat' component={Chat} />
+                        <Route path='/auth' component={Auth} />
+                    </div>    
+                 </Router>
             </div>
         );
     }
