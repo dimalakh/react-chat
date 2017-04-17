@@ -14,7 +14,7 @@ class AppComponent extends Component {
         return (
             <div>
                 <Router history={browserHistory}>
-                    <div>
+                    <div className='content'>
                         <Navigation/>
                         <Route exact path='/' component={Sidebar} />
                         <Route path='/chat' component={Chat} />

@@ -6,7 +6,7 @@ import './navigation.scss';
 export class Navigation extends Component {
     render() {
         return (
-            <nav>
+            <nav className='top-nav'>
                 <Link to="/">Home</Link>
                 <Link to="/auth">Log in/Sign up</Link>
                 <Link to="/chat">Chat</Link>

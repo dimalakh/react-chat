@@ -31,6 +31,7 @@ body, #root, .content {
     display: flex;
     overflow: hidden;
     font-size: 100%;
+    flex-direction: column;
     width: 100vw;
     height: 100vh;
 }

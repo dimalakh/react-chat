@@ -9,7 +9,7 @@ import { MessageForm } from '../message-form/message-form';
 export class Chat extends Component {
     render() {
         return (
-            <div className='content'>
+            <div className='chat'>
                 <Sidebar/>
                 <section className="main-frame">
                     <Toolbar/>

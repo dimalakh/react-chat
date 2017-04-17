@@ -1,5 +1,9 @@
 @import '../../variables';
 
+.chat {
+    display: flex;
+}
+
 .chat-body {
     position: relative;
     box-sizing: border-box;
