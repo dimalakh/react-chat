@@ -1,6 +1,12 @@
 @import '../../variables';
 
 .chat-body {
+    position: relative;
+    box-sizing: border-box;
+    width: 100%;
+    padding: 0 30px;
+    flex-grow: 1;
+    overflow-y: scroll;
     // when message is from owner of the app
     li {
         display: flex;

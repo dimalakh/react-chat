@@ -3,11 +3,37 @@ import './sidebar.scss';
 import  React, { Component } from 'react';
 
 export class Sidebar extends Component {
+    constructor (props) {
+        super(props);
+        this.state = {
+            sidebar: ''
+        };
+    }
+
+    componentWillMount() {
+        this.toggler = this.state.sidebar;
+    }
+
+
+    hendlerToggleSidebar() {
+        if (this.toggler == 'toggled') {
+            this.toggler = '';
+            this.setState({
+                sidebar: ''
+            });
+        } else {
+            this.toggler = 'toggled';
+            this.setState({
+                sidebar: 'toggled'
+            });
+        }
+    }
+
     render() {
         return (
-            <aside className="main-frame">
+            <aside className={this.toggler}>
                 <nav className="sidebar-nav">
-                    <button id="aside-toggler" className="sidebar-toggle"></button>
+                    <button onClick={this.hendlerToggleSidebar.bind(this)} className="sidebar-toggle"></button>
                     <form>
                         <input type="search" />
                         <button className="search-icon"></button>

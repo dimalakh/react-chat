@@ -14,6 +14,7 @@ export class Auth extends Component{
             body: JSON.stringify({'username': name, 'pass': password})
         }
 
+
         if(type == 'signup') {
             fetch(`http://eleksfrontendcamp-mockapitron.rhcloud.com/${type}`, myInit)
             .then(console.log('ok'));
