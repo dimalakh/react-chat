@@ -16,20 +16,16 @@ export class Chat extends Component {
         this.socket = io.connect('http://eleksfrontendcamp-mockapitron.rhcloud.com:8000');
     }
 
-    componentWillMount() {
+    componentDidMount() {
         fetch('http://eleksfrontendcamp-mockapitron.rhcloud.com/messages')
         .then((res) => res.json())
         .then(data => {
             this.setState({
                 messages: data  
             });
-            console.log(data);
-    });
-    }
+        });
 
-    componentDidMount() {
         this.socket.on('connect', () => {
-          console.log('connected');
           this.socket.emit('authenticate', { token: JSON.parse(localStorage.getItem('data')).token })
         })
         
@@ -42,8 +38,9 @@ export class Chat extends Component {
         });
     }
 
-    sendMessage() {
-        this.socket.emit('message', 'chat testing, second try');
+    sendMessage(msg) {
+        this.socket.emit('message', msg);
+        console.log(msg);
     }
 
     showState() {
@@ -57,7 +54,7 @@ export class Chat extends Component {
                 <section className="main-frame">
                     <Toolbar/>
                     <Messages messages={this.state.messages}/>
-                    <MessageForm/>
+                    <MessageForm send={this.sendMessage.bind(this)} />
                     {/*<button onClick={this.sendMessage.bind(this)}>send</button>
                     <button onClick={this.showState.bind(this)}>show</button>*/}
                 </section>
