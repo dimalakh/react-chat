@@ -10,6 +10,13 @@ export class Messages extends Component {
 
     componentDidUpdate() {
         this.handleBottomScroll();
+
+
+       const sorted = this.props.messages.filter((message) => {
+            return typeof(message.msg) != 'object';
+        });
+
+        console.log(sorted);
     }
 
     handleBottomScroll() {
@@ -18,23 +25,27 @@ export class Messages extends Component {
     }
 
     render() {
-        const messagesArr = this.props.messages.map((message, index) => {
-            //if message is from receiver add class is-answer
-            let messageType = '';
-            if(message.user.username != JSON.parse(localStorage.getItem('data')).user.username) {
-                messageType = 'is-answer';
-            }
+        const messagesArr = this.props.messages
+            .filter((message) => {
+                return typeof(message.msg) != 'object';
+            })
+            .map((message, index) => {
+                //if message is from receiver add class is-answer
+                let messageType = '';
+                if(message.user.username != JSON.parse(localStorage.getItem('data')).user.username) {
+                    messageType = 'is-answer';
+                }
 
-            return (
-                <li key={index} className={messageType}>
-                    <div className="user-photo"></div>
-                    <div className="chat-message">
-                        <p>{message.user.username}</p>
-                        <time className="message-time">{moment(message.time).format('LT')}</time>
-                    </div>
-                </li>
-            );
-        });
+                return (
+                    <li key={index} className={messageType}>
+                        <div className="user-photo"></div>
+                        <div className="chat-message">
+                            <p>{message.msg}</p>
+                            <time className="message-time">{moment(message.time).format('LT')}</time>
+                        </div>
+                    </li>
+                );
+            });
 
         return (
             <ul className="chat-body">
