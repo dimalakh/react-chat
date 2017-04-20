@@ -1,18 +1,16 @@
-import React, { Component } from 'react';
-import { render } from 'react-dom';
-
-import { BrowserRouter as Router, Route, Link, browserHistory } from 'react-router-dom';
-import { Navigation } from './components/navigation/navigation';
-import { Sidebar } from './components/sidebar/sidebar';
-import { Chat } from './components/chat/chat';
-import { Auth } from './components/auth/auth';
-import { Home } from './components/home/home';
-
 import './app.scss';
 
-//Component
-class AppComponent extends Component {
+import React, { Component } from 'react';
+import { BrowserRouter as Router, Route, Link, browserHistory } from 'react-router-dom';
 
+import { Navigation } from '../navigation/navigation';
+import { Sidebar } from '../sidebar/sidebar';
+import { Chat } from '../chat/chat';
+import { Auth } from '../auth/auth';
+import { Home } from '../home/home';
+
+//Component
+export class App extends Component {
     render() {
         return (
             <div>
@@ -28,6 +26,3 @@ class AppComponent extends Component {
         );
     }
 }
-
-//render component
-render(<AppComponent/>, document.querySelector('#root'));
