@@ -10,9 +10,15 @@ import { Chat } from '../chat/chat';
 import { Auth } from '../auth/auth';
 import { Home } from '../home/home';
 
+import { sendMessage } from '../../actions/chat';
+
 class App extends Component {
     constructor(props) {
         super(props);
+    }
+
+    componentDidMount() {
+        this.props.onSendMessage('hollla');
     }
     render() {
         console.log(this.props);
@@ -35,5 +41,9 @@ export default connect(
   state => ({
     testStore: state
   }),
-  dispatch => ({})
+  dispatch => ({
+      onSendMessage: (message) => {
+          dispatch(sendMessage(message));
+      }
+  })
 )(App);

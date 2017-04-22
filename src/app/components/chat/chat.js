@@ -55,8 +55,6 @@ export class Chat extends Component {
                     <Toolbar/>
                     <Messages messages={this.state.messages}/>
                     <MessageForm send={this.sendMessage.bind(this)} />
-                    {/*<button onClick={this.sendMessage.bind(this)}>send</button>
-                    <button onClick={this.showState.bind(this)}>show</button>*/}
                 </section>
             </div>
         );

@@ -40,7 +40,7 @@ export class Messages extends Component {
                     <li key={index} className={messageType}>
                         <div className="user-photo"></div>
                         <div className="chat-message">
-                            <p>{message.msg}</p>
+                            <p>{message.user.username}: {message.msg}</p>
                             <time className="message-time">{moment(message.time).format('LT')}</time>
                         </div>
                     </li>
