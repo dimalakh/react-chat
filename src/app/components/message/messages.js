@@ -10,13 +10,6 @@ export class Messages extends Component {
 
     componentDidUpdate() {
         this.handleBottomScroll();
-
-
-       const sorted = this.props.messages.filter((message) => {
-            return typeof(message.msg) != 'object';
-        });
-
-        console.log(sorted);
     }
 
     handleBottomScroll() {

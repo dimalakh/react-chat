@@ -1,12 +1,14 @@
 import './chat.scss';
 
 import  React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { Sidebar } from '../sidebar/sidebar';
 import { Toolbar } from '../toolbar/toolbar';
 import { Messages } from '../message/messages';
 import { MessageForm } from '../message-form/message-form';
+import { sendMessage } from '../../actions/chat';
 
-export class Chat extends Component {
+class Chat extends Component {
     constructor (props) {
         super(props);
         this.state = {
@@ -17,6 +19,7 @@ export class Chat extends Component {
     }
 
     componentDidMount() {
+        console.log(this.props.messages);
         fetch('http://eleksfrontendcamp-mockapitron.rhcloud.com/messages')
         .then((res) => res.json())
         .then(data => {
@@ -40,12 +43,8 @@ export class Chat extends Component {
 
     sendMessage(msg) {
         this.socket.emit('message', msg);
-        console.log(msg);
     }
 
-    showState() {
-        console.log(this.state);
-    }
     
     render() {
         return (
@@ -60,3 +59,14 @@ export class Chat extends Component {
         );
     }
 } 
+
+export default connect(
+  (state, ownProps) => ({
+    messages: state.chat
+  }),
+  dispatch => ({
+      onSendMessage: (message) => {
+          dispatch(sendMessage(message));
+      }
+  })
+)(Chat);
