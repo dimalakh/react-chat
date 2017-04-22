@@ -19,10 +19,10 @@ export class MessageForm extends Component {
                 <div className="inner">
                     <div id="message-box" className="message-text" contentEditable>
                     </div>
-                    <button id="smiles-button" className="smile-icon"></button>
-                    <input id="attach" className="file-icon" type="file" />
-                    <label htmlFor="attach"></label>
-                    <button onClick={this.handleSubmit.bind(this)}>send</button>
+                    {/*<button id="smiles-button" className="smile-icon"></button>*/}
+                    <button className='send-button' onClick={this.handleSubmit.bind(this)}>send</button>
+                    {/*<input id="attach" className="file-icon" type="file" />
+                    <label htmlFor="attach"></label>*/}
                 </div>
             </form>
         );

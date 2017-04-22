@@ -40,7 +40,7 @@ export class Sidebar extends Component {
                     </form>
                     <button id="menu-toggler" className="menu-icon"></button>
                 </nav>
-                <ul className="user-menu">
+                <ul className="user-menu scrollable">
                     <li>
                         <div className="user-photo">
                             <div className="message-indicator">1</div>
@@ -54,6 +54,30 @@ export class Sidebar extends Component {
                         <div className="user-name">Cassia Tofano</div>
                         <div className="short-message">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</div>
                         <time>now</time>
+                    </li>
+                    <li>
+                        <div className="user-photo">
+                            <div className="message-indicator">1</div>
+                        </div>
+                        <div className="user-name">John Faustino</div>
+                        <div className="short-message">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</div>
+                        <time>52 m</time>
+                    </li>
+                    <li>
+                        <div className="user-photo">
+                            <div className="message-indicator">1</div>
+                        </div>
+                        <div className="user-name">John Faustino</div>
+                        <div className="short-message">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</div>
+                        <time>52 m</time>
+                    </li>
+                    <li>
+                        <div className="user-photo">
+                            <div className="message-indicator">1</div>
+                        </div>
+                        <div className="user-name">John Faustino</div>
+                        <div className="short-message">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</div>
+                        <time>52 m</time>
                     </li>
                 </ul>
             </aside>    

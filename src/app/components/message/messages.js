@@ -48,7 +48,7 @@ export class Messages extends Component {
             });
 
         return (
-            <ul className="chat-body">
+            <ul className="chat-body scrollable">
                 {messagesArr}
             </ul>
         );

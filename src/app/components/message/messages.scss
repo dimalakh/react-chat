@@ -58,3 +58,7 @@
         }
     }
 }
+
+.chat-body.scrollable::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.40)
+}
