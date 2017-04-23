@@ -9,6 +9,13 @@ export const sendMessage = (message) => {
     }
 }
 
+export const receiveNewMessage = (message) => {
+    return {
+        type: 'RECEIVE_NEW_MESSAGE',
+        payload: message
+    }
+}
+
 function receiveMessages (data) {
     return {
         type: 'RECEIVE_MESSAGES',

@@ -7,7 +7,7 @@ import { Sidebar } from '../sidebar/sidebar';
 import { Toolbar } from '../toolbar/toolbar';
 import { Messages } from '../message/messages';
 import { MessageForm } from '../message-form/message-form';
-import { sendMessage, fetchMessages } from '../../actions/chat';
+import { sendMessage, receiveNewMessage, fetchMessages } from '../../actions/chat';
 
 class Chat extends Component {
     constructor (props) {
@@ -20,24 +20,18 @@ class Chat extends Component {
 
     componentWillMount() {
         this.props.onReceiveMessages();
-        console.log(this.props.messages);
     }
 
     componentDidMount() {
-        //this.props.onSendMessage('asdasd');
-        //this.getMessages();
         this.socket.on('connect', () => {
           this.socket.emit('authenticate', { token: JSON.parse(localStorage.getItem('data')).token })
-        })
+        });
         
         this.socket.on('message', msg => this.handleNewMessage(msg));
     }
 
-
     handleNewMessage(msg) {
-        this.setState({
-                messages: [...this.state.messages, msg]  
-        });
+        this.props.onReceiveNewMessage(msg);
     }
 
     sendMessage(msg) {
@@ -45,7 +39,6 @@ class Chat extends Component {
     }
     
     render() {
-        console.log(this.props.messages);
         return (
             <div className='chat'>
                 <Sidebar/>
@@ -65,10 +58,13 @@ export default connect(
   }),
   dispatch => ({
       onSendMessage: (message) => {
-          dispatch(sendMessage(message));
+        dispatch(sendMessage(message));
+      },
+      onReceiveNewMessage: (msg) => {
+        dispatch(receiveNewMessage(msg));
       },
       onReceiveMessages: () => {
-          dispatch(fetchMessages(dispatch));
+        dispatch(fetchMessages(dispatch));
       }
   })
 )(Chat);
