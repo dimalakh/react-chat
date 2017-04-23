@@ -2,6 +2,7 @@ import './chat.scss';
 
 import  React, { Component } from 'react';
 import { connect } from 'react-redux';
+import moment from 'moment';
 
 import { Sidebar } from '../sidebar/sidebar';
 import { Toolbar } from '../toolbar/toolbar';
@@ -19,7 +20,9 @@ class Chat extends Component {
     }
 
     componentWillMount() {
-        this.props.onReceiveMessages();
+        // fromDate == datebefore in miliseconds
+        const fromDate = moment().add(-1, 'days').format('x');
+        this.props.onReceiveMessages(fromDate);
     }
 
     componentDidMount() {
@@ -28,6 +31,11 @@ class Chat extends Component {
         });
         
         this.socket.on('message', msg => this.handleNewMessage(msg));
+    }
+
+    showMessagesFromDate(days) {
+        const fromDate = moment().add(days, 'days').format('x');
+        this.props.onReceiveMessages(fromDate);
     }
 
     handleNewMessage(msg) {
@@ -43,7 +51,7 @@ class Chat extends Component {
             <div className='chat'>
                 <Sidebar/>
                 <section className="main-frame">
-                    <Toolbar/>
+                    <Toolbar showFromDate={this.showMessagesFromDate.bind(this)}/>
                     <Messages messages={this.props.messages}/>
                     <MessageForm send={this.sendMessage.bind(this)} />
                 </section>
@@ -63,8 +71,8 @@ export default connect(
       onReceiveNewMessage: (msg) => {
         dispatch(receiveNewMessage(msg));
       },
-      onReceiveMessages: () => {
-        dispatch(fetchMessages(dispatch));
+      onReceiveMessages: (fromDate) => {
+        dispatch(fetchMessages(fromDate));
       }
   })
 )(Chat);

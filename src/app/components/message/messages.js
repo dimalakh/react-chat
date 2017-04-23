@@ -18,6 +18,8 @@ export class Messages extends Component {
     }
 
     render() {
+        console.log(moment().format('x'));
+        console.log(moment().add(-30, 'days').unix());
         const messagesArr = this.props.messages
             .filter((message) => {
                 return typeof(message.msg) != 'object';
@@ -30,6 +32,7 @@ export class Messages extends Component {
                 }
 
                 return (
+                    
                     <li key={index} className={messageType}>
                         <div className="user-photo"></div>
                         <div className="chat-message">

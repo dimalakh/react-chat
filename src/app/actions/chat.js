@@ -23,18 +23,10 @@ function receiveMessages (data) {
     }
 }
 
-export function fetchMessages() {
+export function fetchMessages(fromDate) {
     return (dispatch) => {
-        return fetch('http://eleksfrontendcamp-mockapitron.rhcloud.com/messages')
+        return fetch(`http://eleksfrontendcamp-mockapitron.rhcloud.com/messages?from=${fromDate}`)
         .then((res) => res.json())
         .then(data => dispatch(receiveMessages(data)));
     }    
 }
-/*export const getMessages = () => {
-    return {
-        type: 'GET_MESSAGES',
-        payload: {
-            messages
-        }
-    }
-}*/

@@ -9,15 +9,18 @@ export class MessageForm extends Component {
 
     handleSubmit(e) {
         e.preventDefault();
-        let msg = document.querySelector('#message-box').innerHTML;
-        this.props.send(msg);
+        const messageInput = document.querySelector('#message-box');
+        this.props.send(messageInput.innerHTML);
+        messageInput.innerHTML = '';
     }
+
+    
 
     render() {
         return (
             <form className="chat-message-form">
                 <div className="inner">
-                    <div id="message-box" className="message-text" contentEditable>
+                    <div id="message-box" className="message-text" contentEditable="true">
                     </div>
                     {/*<button id="smiles-button" className="smile-icon"></button>*/}
                     <button className='send-button' onClick={this.handleSubmit.bind(this)}>send</button>
