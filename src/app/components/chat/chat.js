@@ -29,7 +29,6 @@ class Chat extends Component {
         this.socket.on('connect', () => {
           this.socket.emit('authenticate', { token: JSON.parse(localStorage.getItem('data')).token })
         });
-        
         this.socket.on('message', msg => this.handleNewMessage(msg));
     }
 
@@ -47,12 +46,15 @@ class Chat extends Component {
     }
     
     render() {
+        if (this.props.isLoading) {
+            return <p>Loading…</p>;
+        }
         return (
             <div className='chat'>
                 <Sidebar/>
                 <section className="main-frame">
                     <Toolbar showFromDate={this.showMessagesFromDate.bind(this)}/>
-                    <Messages messages={this.props.messages}/>
+                    <Messages messages={this.props.messageStore}/>
                     <MessageForm send={this.sendMessage.bind(this)} />
                 </section>
             </div>
@@ -60,10 +62,14 @@ class Chat extends Component {
     }
 } 
 
+
 export default connect(
-  (state) => ({
-    messages: state.chat
-  }),
+  (state) => {
+      return {
+          messageStore: state.chat,
+          isLoading: state.messagesIsLoading
+      }
+  },
   dispatch => ({
       onSendMessage: (message) => {
         dispatch(sendMessage(message));

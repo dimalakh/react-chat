@@ -18,8 +18,10 @@ export class Messages extends Component {
     }
 
     render() {
-        console.log(moment().format('x'));
-        console.log(moment().add(-30, 'days').unix());
+        console.log(this.props.messages);
+        if(typeof(this.props.messages) == 'undefined') {
+            return <div>2</div>
+        }
         const messagesArr = this.props.messages
             .filter((message) => {
                 return typeof(message.msg) != 'object';
@@ -31,8 +33,7 @@ export class Messages extends Component {
                     messageType = 'is-answer';
                 }
 
-                return (
-                    
+                return (      
                     <li key={index} className={messageType}>
                         <div className="user-photo"></div>
                         <div className="chat-message">
@@ -42,7 +43,6 @@ export class Messages extends Component {
                     </li>
                 );
             });
-
         return (
             <ul className="chat-body scrollable">
                 {messagesArr}

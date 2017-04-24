@@ -1,4 +1,4 @@
-import fetch from 'isomorphic-fetch'
+import fetch from 'isomorphic-fetch';
 
 export const sendMessage = (message) => {
     return {
@@ -6,6 +6,13 @@ export const sendMessage = (message) => {
         payload: {
             msg: message
         }
+    }
+}
+
+function messagesIsLoading (bool) {
+    return {
+        type: 'MESSAGES_IS_LOADING',
+        isLoading: bool
     }
 }
 
@@ -19,14 +26,22 @@ export const receiveNewMessage = (message) => {
 function receiveMessages (data) {
     return {
         type: 'RECEIVE_MESSAGES',
-        payload: data
+        data
     }
 }
 
-export function fetchMessages(fromDate) {
+export function fetchMessages (fromDate) {
     return (dispatch) => {
-        return fetch(`http://eleksfrontendcamp-mockapitron.rhcloud.com/messages?from=${fromDate}`)
+        dispatch(messagesIsLoading(true));
+        fetch(`http://eleksfrontendcamp-mockapitron.rhcloud.com/messages?from=${fromDate}`)
+        .then((res) => {
+                dispatch(messagesIsLoading(false));
+                return res;
+            }
+        )
         .then((res) => res.json())
-        .then(data => dispatch(receiveMessages(data)));
+        .then((data) => {
+            dispatch(receiveMessages(data));
+        });
     }    
 }

@@ -1,16 +1,26 @@
-const initialState = [
-    {"msg":"Hello Eleks frontend camp !!","user":{"username":"andriy.vandakurov@gmail.com"},"time":1492425796026}
-]
+export const initialState =
+    {
+        "chat": []
+    }
 
 export default function chat (state = initialState, action) {
      switch (action.type) {
         case 'SEND_MESSAGE': 
-            return [...state, action.payload];
+             return [...state, action.payload];
         case 'RECEIVE_NEW_MESSAGE':
-            return [...state, action.payload];    
+             return [...state, action.payload];    
         case 'RECEIVE_MESSAGES': 
-            return [...action.payload];
+            return  action.data;
+        default:
+            return state;
      } 
-     return state;
 }
 
+export function messagesIsLoading (state = false, action) {
+    switch (action.type) {
+        case 'MESSAGES_IS_LOADING':
+            return action.isLoading;
+        default:
+            return state;
+    }
+}
