@@ -11,43 +11,22 @@ export class Auth extends Component{
         this.props.onLogIn();
     }
 
-    auth(type, name, password) {
-        let myHeaders = new Headers();
-        myHeaders.set('Content-Type', 'application/json');
-
-        let myInit = {
-            method: 'post',
-            headers: myHeaders,
-            mode: 'cors',
-            body: JSON.stringify({'username': name, 'pass': password})
-        }
-
-
-        if(type == 'signup') {
-            fetch(`http://eleksfrontendcamp-mockapitron.rhcloud.com/${type}`, myInit)
-            .then(console.log('ok'));
-        } else {
-            fetch(`http://eleksfrontendcamp-mockapitron.rhcloud.com/${type}`, myInit)
-            .then(res => res.json())
-            .then(res => localStorage.setItem('data', JSON.stringify(res)))
-            .then(() => this.props.history.push('/chat'));
-        }
-    }
-
     signup(e) {
         e.preventDefault();
         let name = document.querySelector('#auth-name'),
             password = document.querySelector('#auth-password');
-
-        this.auth('signup', name.value, password.value);    
+        
+        this.props.onSignUp('signup', name.value, password.value)
+        //this.auth('signup', name.value, password.value);    
     }
 
     login(e) {
         e.preventDefault();
         let name = document.querySelector('#login-name'),
             password = document.querySelector('#login-password');
-
-        this.auth('login', name.value, password.value);    
+        
+        this.props.onLogIn('login', name.value, password.value, this.props.history)
+        //this.auth('login', name.value, password.value);    
     }
 
     render() {
