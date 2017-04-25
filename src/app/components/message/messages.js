@@ -1,6 +1,7 @@
 import './messages.scss';
 
 import  React, { Component } from 'react';
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import moment from 'moment';
 
 export class Messages extends Component {
@@ -18,10 +19,6 @@ export class Messages extends Component {
     }
 
     render() {
-        console.log(this.props.messages);
-        if(typeof(this.props.messages) == 'undefined') {
-            return <div>2</div>
-        }
         const messagesArr = this.props.messages
             .filter((message) => {
                 return typeof(message.msg) != 'object';
@@ -43,10 +40,23 @@ export class Messages extends Component {
                     </li>
                 );
             });
-        return (
-            <ul className="chat-body scrollable">
-                {messagesArr}
-            </ul>
-        );
+
+        if(this.props.loader) {
+            return (
+                <div className="chat-body spiner-wrap">
+                    <div className="spinner">
+                        <div className="bounce1"></div>
+                        <div className="bounce2"></div>
+                        <div className="bounce3"></div>
+                    </div>
+                </div>
+            )
+        } else {
+            return (
+                <ul className="chat-body scrollable">
+                    {messagesArr}
+                </ul>
+            );
+        }
     }
 }

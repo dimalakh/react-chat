@@ -46,15 +46,12 @@ class Chat extends Component {
     }
     
     render() {
-        if (this.props.isLoading) {
-            return <p>Loading…</p>;
-        }
         return (
             <div className='chat'>
                 <Sidebar/>
                 <section className="main-frame">
                     <Toolbar showFromDate={this.showMessagesFromDate.bind(this)}/>
-                    <Messages messages={this.props.messageStore}/>
+                    <Messages loader={this.props.isLoading} messages={this.props.messageStore}/>
                     <MessageForm send={this.sendMessage.bind(this)} />
                 </section>
             </div>
