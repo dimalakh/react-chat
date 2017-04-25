@@ -23,10 +23,17 @@ export class Chat extends Component {
     }
 
     componentDidMount() {
+        this.isLoggedIn();
         this.socket.on('connect', () => {
           this.socket.emit('authenticate', { token: JSON.parse(localStorage.getItem('data')).token })
         });
         this.socket.on('message', msg => this.handleReceiveNewMessage(msg));
+    }
+
+    isLoggedIn() {
+        if(!JSON.parse(localStorage.getItem('data'))){
+            this.props.history.push('auth');
+        }
     }
 
     showMessagesFromDate(days) {
@@ -47,7 +54,7 @@ export class Chat extends Component {
             <div className='chat'>
                 <Sidebar/>
                 <section className="main-frame">
-                    <Toolbar showFromDate={this.showMessagesFromDate.bind(this)}/>
+                    <Toolbar history={this.props.history} showFromDate={this.showMessagesFromDate.bind(this)}/>
                     <Messages loader={this.props.isLoading} messages={this.props.messageStore}/>
                     <MessageForm send={this.sendMessage.bind(this)} />
                 </section>

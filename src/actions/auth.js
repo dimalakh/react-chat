@@ -14,7 +14,7 @@ const signUpSuccess = (data) => {
     }
 }
 
-export const auth = (type, name, password, user, history) => {
+export const auth = (type, name, password, history) => {
     return (dispatch) => {
         let myHeaders = new Headers();
         myHeaders.set('Content-Type', 'application/json');

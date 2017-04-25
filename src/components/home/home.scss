@@ -1,1 +1,36 @@
 @import '../../styles/variables';
+
+.home-wrapper {
+    display: flex;
+    flex-grow: 1;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(to bottom right, $deep-primary, $bright-accent);
+    color: $absolute-white;
+    
+    .home {
+        text-align: center;
+
+        .home-text {
+            margin-top: 50px;
+            color: rgba(255, 255, 255, 0.71);
+            font-weight: 300;
+        }
+
+        h1 {
+            margin-bottom: 5px;
+            letter-spacing: 2px;
+        }
+
+        a {
+            color: $absolute-white;
+            text-decoration: none;
+            transition: all .2s ease-in-out;
+        }
+        
+        a:hover {
+            transform: scale(2.2);
+        }
+    }
+}

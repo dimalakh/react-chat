@@ -16,6 +16,11 @@ export class Toolbar extends Component {
         document.querySelector('#settingsDropdown').classList.toggle('show');
     }
 
+    logOut () {
+        localStorage.removeItem('data');
+        this.props.history.push('auth');
+    }
+
     render() {
         return (
             <nav className="toolbar">
@@ -25,7 +30,7 @@ export class Toolbar extends Component {
                     <a data-lastHistory="-3" onClick={this.handleShowMessagesFrom.bind(this)}>Messages for last 5 days</a>
                     <a data-lastHistory="-7" onClick={this.handleShowMessagesFrom.bind(this)}>Messages for last 7 days</a>
                 </div>
-                <button className="user-icon"></button>
+                <button onClick={this.logOut.bind(this)} className="user-icon"></button>
             </nav>
         );
     }
