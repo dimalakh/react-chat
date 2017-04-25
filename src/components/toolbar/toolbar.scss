@@ -1,4 +1,4 @@
-@import '../variables';
+@import '../../styles/variables';
 
 
 .toolbar {
@@ -17,7 +17,7 @@
     }
 
     .message-icon:before {
-        background-image: url('/img/sprite.svg');
+        background-image: url('/images/sprite.svg');
         @include icon(25px, 17px, 0, -22px);
     }
 
@@ -39,7 +39,7 @@
     }
 
     .user-icon:before {
-        background-image: url('/img/sprite.svg');
+        background-image: url('/images/sprite.svg');
         @include icon(18px, 18px, 0, -64px);
     }
 

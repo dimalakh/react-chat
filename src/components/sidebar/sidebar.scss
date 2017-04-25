@@ -1,7 +1,6 @@
-@import '../variables';
+@import '../../styles/variables';
 
 /* SIDEBAR NAVIGATION START*/
-
 .sidebar-nav {
     width: 100%;
     padding: 30px;
@@ -76,7 +75,7 @@
         .user-photo {
             margin-right: 20px;
             float: left;
-            background-image: url('/img/user-2.jpg');
+            background-image: url('/images/user-2.jpg');
             @include round-image(50px);        
             
             .message-indicator {

@@ -1,4 +1,4 @@
-import './base.scss';
+import './styles/base.scss';
 
 import React from 'react';
 import { render } from 'react-dom';
@@ -22,7 +22,6 @@ render(
         <Provider store={store}>
             <ConnectedRouter history={history}>
                     <div className='content'>
-                        <Navigation/>
                         <Route exact path='/' component={Home} />
                         <Route path='/chat' component={Chat} />
                         <Route path='/auth' component={Auth} />

@@ -1,4 +1,4 @@
-@import '../variables';
+@import '../../styles/variables';
 
 .chat-message-form {
     position: relative;
@@ -33,7 +33,7 @@
         right: 65px;
         width: 22px;
         height: 22px;
-        background-image: url('/img/sprite.svg');
+        background-image: url('/images/sprite.svg');
         @include icon(22px, 22px, -27px, -25px);
     }
 
