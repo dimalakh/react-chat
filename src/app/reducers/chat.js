@@ -6,11 +6,11 @@ export const initialState =
 export default function chat (state = initialState, action) {
      switch (action.type) {
         case 'SEND_MESSAGE': 
-             return [...state, action.payload];
+            return [...state, action.msg];
         case 'RECEIVE_NEW_MESSAGE':
-             return [...state, action.payload];    
+            return [...state, action.message];    
         case 'RECEIVE_MESSAGES': 
-            return  action.data;
+            return  action.messages;
         default:
             return state;
      } 

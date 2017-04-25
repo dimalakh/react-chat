@@ -3,9 +3,7 @@ import fetch from 'isomorphic-fetch';
 export const sendMessage = (message) => {
     return {
         type: 'SEND_MESSAGE',
-        payload: {
-            msg: message
-        }
+        msg: message
     }
 }
 
@@ -19,14 +17,14 @@ function messagesIsLoading (bool) {
 export const receiveNewMessage = (message) => {
     return {
         type: 'RECEIVE_NEW_MESSAGE',
-        payload: message
+        message
     }
 }
 
-function receiveMessages (data) {
+function receiveMessages (messages) {
     return {
         type: 'RECEIVE_MESSAGES',
-        data
+        messages
     }
 }
 

@@ -13,9 +13,6 @@ import { sendMessage, receiveNewMessage, fetchMessages } from '../../actions/cha
 class Chat extends Component {
     constructor (props) {
         super(props);
-        this.state = {
-            messages: []
-        }
         this.socket = io.connect('http://eleksfrontendcamp-mockapitron.rhcloud.com:8000');
     }
 
@@ -29,7 +26,7 @@ class Chat extends Component {
         this.socket.on('connect', () => {
           this.socket.emit('authenticate', { token: JSON.parse(localStorage.getItem('data')).token })
         });
-        this.socket.on('message', msg => this.handleNewMessage(msg));
+        this.socket.on('message', msg => this.handleReceiveNewMessage(msg));
     }
 
     showMessagesFromDate(days) {
@@ -37,7 +34,7 @@ class Chat extends Component {
         this.props.onReceiveMessages(fromDate);
     }
 
-    handleNewMessage(msg) {
+    handleReceiveNewMessage(msg) {
         this.props.onReceiveNewMessage(msg);
     }
 
