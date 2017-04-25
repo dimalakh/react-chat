@@ -6,11 +6,8 @@ import { Provider } from 'react-redux';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import { ConnectedRouter } from 'react-router-redux';
 
-
-import { Navigation } from './components/navigation/navigation';
-import { Sidebar } from './components/sidebar/sidebar';
-import  Chat  from './components/chat/chat';
-import { Auth } from './components/auth/auth';
+import Chat  from './containers/chat';
+import Auth from './containers/auth';
 import { Home } from './components/home/home';
 import { store, history } from './store';
 

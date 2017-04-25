@@ -7,17 +7,17 @@ export const sendMessage = (message) => {
     }
 }
 
-function messagesIsLoading (bool) {
-    return {
-        type: 'MESSAGES_IS_LOADING',
-        isLoading: bool
-    }
-}
-
 export const receiveNewMessage = (message) => {
     return {
         type: 'RECEIVE_NEW_MESSAGE',
         message
+    }
+}
+
+function messagesIsLoading (bool) {
+    return {
+        type: 'MESSAGES_IS_LOADING',
+        isLoading: bool
     }
 }
 

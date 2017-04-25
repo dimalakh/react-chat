@@ -8,9 +8,9 @@ import { Sidebar } from '../sidebar/sidebar';
 import { Toolbar } from '../toolbar/toolbar';
 import { Messages } from '../message/messages';
 import { MessageForm } from '../message-form/message-form';
-import { sendMessage, receiveNewMessage, fetchMessages } from '../../actions/chat';
 
-class Chat extends Component {
+
+export class Chat extends Component {
     constructor (props) {
         super(props);
         this.socket = io.connect('http://eleksfrontendcamp-mockapitron.rhcloud.com:8000');
@@ -55,24 +55,3 @@ class Chat extends Component {
         );
     }
 } 
-
-
-export default connect(
-  (state) => {
-      return {
-          messageStore: state.chat,
-          isLoading: state.messagesIsLoading
-      }
-  },
-  dispatch => ({
-      onSendMessage: (message) => {
-        dispatch(sendMessage(message));
-      },
-      onReceiveNewMessage: (msg) => {
-        dispatch(receiveNewMessage(msg));
-      },
-      onReceiveMessages: (fromDate) => {
-        dispatch(fetchMessages(fromDate));
-      }
-  })
-)(Chat);

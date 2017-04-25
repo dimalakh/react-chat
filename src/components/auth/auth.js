@@ -3,6 +3,14 @@ import './auth.scss';
 import  React, { Component } from 'react';
 
 export class Auth extends Component{
+    constructor (props) {
+        super(props);
+    }
+
+    componentDidMount() {
+        this.props.onLogIn();
+    }
+
     auth(type, name, password) {
         let myHeaders = new Headers();
         myHeaders.set('Content-Type', 'application/json');
