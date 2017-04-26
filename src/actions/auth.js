@@ -28,10 +28,10 @@ export const auth = (type, name, password, history) => {
 
         switch (type) {
             case 'signup':
-                fetch(`http://eleksfrontendcamp-mockapitron.rhcloud.com/${type}`, myInit)
+                fetch(`https://eleksfrontendcamp-mockapitron.rhcloud.com/${type}`, myInit)
                 .then(console.log('ok'));
             case 'login':
-                 fetch(`http://eleksfrontendcamp-mockapitron.rhcloud.com/${type}`, myInit)
+                 fetch(`https://eleksfrontendcamp-mockapitron.rhcloud.com/${type}`, myInit)
                 .then(res => res.json())
                 .then(res => {
                     localStorage.setItem('data', JSON.stringify(res));

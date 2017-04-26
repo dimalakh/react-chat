@@ -13,7 +13,7 @@ import { MessageForm } from '../message-form/message-form';
 export class Chat extends Component {
     constructor (props) {
         super(props);
-        this.socket = io.connect('http://eleksfrontendcamp-mockapitron.rhcloud.com:8000');
+        this.socket = io.connect('https://eleksfrontendcamp-mockapitron.rhcloud.com:8000');
     }
 
     componentWillMount() {
