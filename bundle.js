@@ -30413,9 +30413,9 @@ var auth = exports.auth = function auth(type, name, password, history) {
 
         switch (type) {
             case 'signup':
-                fetch('http://eleksfrontendcamp-mockapitron.rhcloud.com/' + type, myInit).then(console.log('ok'));
+                fetch('https://eleksfrontendcamp-mockapitron.rhcloud.com/' + type, myInit).then(console.log('ok'));
             case 'login':
-                fetch('http://eleksfrontendcamp-mockapitron.rhcloud.com/' + type, myInit).then(function (res) {
+                fetch('https://eleksfrontendcamp-mockapitron.rhcloud.com/' + type, myInit).then(function (res) {
                     return res.json();
                 }).then(function (res) {
                     localStorage.setItem('data', JSON.stringify(res));
@@ -30705,7 +30705,7 @@ var Chat = exports.Chat = function (_Component) {
 
         var _this = _possibleConstructorReturn(this, (Chat.__proto__ || Object.getPrototypeOf(Chat)).call(this, props));
 
-        _this.socket = io.connect('http://eleksfrontendcamp-mockapitron.rhcloud.com:8000');
+        _this.socket = io.connect('https://eleksfrontendcamp-mockapitron.rhcloud.com:8000');
         return _this;
     }
 
