@@ -1,1 +1,1 @@
-# [a react-chat-demo](https://dimalakh.github.io/react-chat/)
+# demo - [react-chat](https://dimalakh.github.io/react-chat/)
