@@ -1,5 +1,7 @@
 const path = require('path');
 const webpack = require('webpack');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
 
@@ -7,7 +9,7 @@ module.exports = {
     output: {
         path: path.resolve(__dirname, 'dist') + '/',
         filename: 'bundle.js',
-        publicPath: '/app/'
+        publicPath: ''
     },
     devServer: {
         port: 9000,
@@ -15,7 +17,7 @@ module.exports = {
         contentBase: './src'
     },
     module: {
-        loaders: [
+        rules: [
             {
                 test: /\.js$/,
                 include: path.resolve(__dirname, 'src'),
@@ -24,13 +26,15 @@ module.exports = {
                     presets: ['react', 'es2015']
                 }
             },
-            {
-                test: /\.scss$/,
-                use: [
-                    { loader: "style-loader" },
-                    { loader: "css-loader" },
-                    { loader: "sass-loader"}
-                ]
+            { // regular css files
+                test: /\.css$/,
+                loader: ExtractTextPlugin.extract({
+                    loader: 'css-loader?importLoaders=1',
+                }),
+            },
+            { // sass / scss loader for webpack
+                test: /\.(sass|scss)$/,
+                loader: ExtractTextPlugin.extract(['css-loader', 'sass-loader'])
             },
             {
                 test: /\.svg/,
@@ -39,5 +43,13 @@ module.exports = {
                 ]
             }
         ]
-    }
+    },
+     plugins: [
+         new ExtractTextPlugin('styles.css'),
+         new HtmlWebpackPlugin({
+            title: 'chat',
+            template: 'src/index.html',
+            inject: 'body'
+        }),
+     ]
 };
