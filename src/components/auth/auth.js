@@ -22,7 +22,7 @@ export class Auth extends Component{
     signup(e) {
         e.preventDefault();
         let name = document.querySelector('#auth-name').value;
-            password = document.querySelector('#auth-password').value;
+        let password = document.querySelector('#auth-password').value;
         
         this.props.onSignUp('signup', name, password);
     }

@@ -13,7 +13,7 @@ import { MessageForm } from '../message-form/message-form';
 export class Chat extends Component {
     constructor (props) {
         super(props);
-        this.socket = io.connect('http://eleksfrontendcamp-mockapitron.rhcloud.com:8000');
+        this.socket = io.connect('http://localhost:3000');
     }
 
     componentWillMount() {
@@ -46,7 +46,7 @@ export class Chat extends Component {
     }
 
     sendMessage(msg) {
-        this.socket.emit('message', msg);
+        this.socket.emit('message', {msg, chatId: '5916ec4d11ba5e7efcbd0e51'});
     }
     
     render() {
