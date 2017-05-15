@@ -14,8 +14,6 @@ export class MessageForm extends Component {
         messageInput.innerHTML = '';
     }
 
-    
-
     render() {
         return (
             <form className="chat-message-form">

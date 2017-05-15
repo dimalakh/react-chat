@@ -10,7 +10,9 @@ export default function chat (state = initialState, action) {
         case 'RECEIVE_NEW_MESSAGE':
             return [...state, action.message];    
         case 'RECEIVE_MESSAGES': 
-            return  action.messages;
+            return [...state, action.messages];
+        case 'RECEIVE_CONVERSATIONS':
+            return  action.conversations;
         default:
             return state;
      } 

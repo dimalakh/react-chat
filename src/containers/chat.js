@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 
 import { Chat } from '../components/chat/chat';
-import { sendMessage, receiveNewMessage, fetchMessages } from '../actions/chat';
+import { sendMessage, receiveNewMessage, fetchMessages, fetchConversations } from '../actions/chat';
 
 const mapStateToProps = (state) => {
     return {
@@ -19,6 +19,9 @@ const mapDispatchToProps = (dispatch) => ({
     },
     onReceiveMessages: (fromDate) => {
         dispatch(fetchMessages(fromDate));
+    },
+    onReceiveConversations: (userId) => {
+        dispatch(fetchConversations(userId));
     }
 });
 

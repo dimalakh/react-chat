@@ -28,6 +28,13 @@ function receiveMessages (messages) {
     }
 }
 
+function receiveConverstions (conversations) {
+    return {
+        type: 'RECEIVE_CONVERSATIONS',
+        conversations
+    }
+}
+
 export function fetchMessages (fromDate) {
     return (dispatch) => {
         dispatch(messagesIsLoading(true));
@@ -42,4 +49,14 @@ export function fetchMessages (fromDate) {
             dispatch(receiveMessages(data));
         });
     }    
+}
+
+export function fetchConversations (userId) {
+    return (dispatch) => {
+        fetch(`http://localhost:3000/chat/${userId}`)
+        .then( res => res.json())
+        .then( data => {
+            dispatch(receiveConverstions(data));
+        });
+    }
 }

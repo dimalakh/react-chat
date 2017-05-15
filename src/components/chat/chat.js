@@ -24,6 +24,7 @@ export class Chat extends Component {
 
     componentDidMount() {
         this.isLoggedIn();
+        this.props.onReceiveConversations('5916f46068ad8f07a2472b03');
         this.socket.on('connect', () => {
           this.socket.emit('authenticate', { token: JSON.parse(localStorage.getItem('data')).token })
         });
