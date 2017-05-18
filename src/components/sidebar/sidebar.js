@@ -1,6 +1,7 @@
 import './sidebar.scss';
 
 import  React, { Component } from 'react';
+import  moment from 'moment';
 
 export class Sidebar extends Component {
     constructor (props) {
@@ -13,7 +14,6 @@ export class Sidebar extends Component {
     componentWillMount() {
         this.toggler = this.state.sidebar;
     }
-
 
     hendlerToggleSidebar() {
         if (this.toggler == 'toggled') {
@@ -30,20 +30,22 @@ export class Sidebar extends Component {
     }
 
     onConversationClick(conversation) {
-        console.log(conversation._id);
+        this.props.selectConversation(conversation._id);
     }
 
     render() {
         console.log(this.props.conversations);
         const conversationsArr = this.props.conversations.map((conversation, index) => {
+            const timeStamp = moment(conversation.lastMsg.date).fromNow();
+
             return (
                  <li key={index} onClick={this.onConversationClick.bind(this, conversation)}>
                     <div className="user-photo">
                         <div className="message-indicator">1</div>
                     </div>
                     <div className="user-name">{conversation._id}</div>
-                    <div className="short-message">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</div>
-                    <time>52 m</time>
+                    <div className="short-message">{conversation.lastMsg.msg}</div>
+                    <time>{timeStamp}</time>
                 </li>   
             );
         });

@@ -51,13 +51,16 @@ export class Chat extends Component {
         this.socket.emit('message', {msg, chatId: '5916ec4d11ba5e7efcbd0e51'});
     }
 
+    selectConversation(chatId) {
+        console.log(chatId + 'axa');
+        this.props.onReceiveMessages(chatId);
+    }
     
     
     render() {
-        
         return (
             <div className='chat'>
-                <Sidebar loader={this.props.conversationsIsLoading} conversations={this.props.conversationStore}/>
+                <Sidebar selectConversation={this.selectConversation.bind(this)} conversations={this.props.conversationStore}/>
                 <section className="main-frame">
                     <Toolbar history={this.props.history} showFromDate={this.showMessagesFromDate.bind(this)}/>
                     <Messages loader={this.props.isLoading} messages={this.props.messageStore}/>
