@@ -1,3 +1,4 @@
+import { API_CONFIG } from '../api-config.js';
 import fetch from 'isomorphic-fetch';
 
 export const sendMessage = (message) => {
@@ -42,10 +43,10 @@ function receiveConverstions (conversations) {
     }
 }
 
-export function fetchMessages (fromDate) {
+export function fetchMessages (conversationId) {
     return (dispatch) => {
         dispatch(messagesIsLoading(true));
-        fetch(`http://eleksfrontendcamp-mockapitron.rhcloud.com/messages`) //?from=${fromDate}
+        fetch(`${API_CONFIG.BASE}/chat/conversation/${conversationId}`)
         .then((res) => {
                 dispatch(messagesIsLoading(false));
                 return res;
@@ -61,7 +62,7 @@ export function fetchMessages (fromDate) {
 export function fetchConversations (userId) {
     return (dispatch) => {
         dispatch(conversationsIsLoading(true));
-        fetch(`http://localhost:3000/chat/${userId}`)
+        fetch(`${API_CONFIG.BASE}/chat/${userId}`)
         .then( res => {
             return res;
         })

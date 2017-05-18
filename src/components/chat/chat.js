@@ -4,6 +4,7 @@ import  React, { Component } from 'react';
 import { connect } from 'react-redux';
 import moment from 'moment';
 
+import { API_CONFIG } from '../../api-config.js'
 import { Sidebar } from '../sidebar/sidebar';
 import { Toolbar } from '../toolbar/toolbar';
 import { Messages } from '../message/messages';
@@ -13,13 +14,13 @@ import { MessageForm } from '../message-form/message-form';
 export class Chat extends Component {
     constructor (props) {
         super(props);
-        this.socket = io.connect('http://localhost:3000');
+        this.socket = io.connect(`${API_CONFIG.BASE}`);
     }
 
     componentWillMount() {
         // fromDate == datebefore in miliseconds
         const fromDate = moment().add(-1, 'days').format('x');
-        this.props.onReceiveMessages(fromDate);
+        this.props.onReceiveMessages('5916ec4d11ba5e7efcbd0e51');
     }
 
     componentDidMount() {

@@ -1,3 +1,5 @@
+import { API_CONFIG } from '../api-config.js';
+
 const logInSuccess = (data) => {
     console.log('login');
     return {
@@ -28,10 +30,10 @@ export const auth = (type, name, password, history) => {
 
         switch (type) {
             case 'signup':
-                fetch(`http://localhost:3000/auth/signup`, myInit)
-                .then(console.log('ok'));
+                fetch(`${API_CONFIG.BASE}/auth/signup`, myInit)
+                .then(() => history.push('/auth/login'));
             case 'login':
-                 fetch(`http://localhost:3000/auth/login`, myInit)
+                 fetch(`${API_CONFIG.BASE}/auth/login`, myInit)
                 .then(res => res.json())
                 .then(res => {
                     localStorage.setItem('data', JSON.stringify(res));

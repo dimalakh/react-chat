@@ -29,11 +29,15 @@ export class Sidebar extends Component {
         }
     }
 
+    onConversationClick(conversation) {
+        console.log(conversation._id);
+    }
+
     render() {
         console.log(this.props.conversations);
         const conversationsArr = this.props.conversations.map((conversation, index) => {
             return (
-                 <li key={index}>
+                 <li key={index} onClick={this.onConversationClick.bind(this, conversation)}>
                     <div className="user-photo">
                         <div className="message-indicator">1</div>
                     </div>
@@ -43,13 +47,6 @@ export class Sidebar extends Component {
                 </li>   
             );
         });
-        if(this.props.loader) {
-
-        } else {
-            this.props.conversations.map((el, mess) => {
-                return el;
-            });
-        }
 
         return (
             <aside className={this.toggler}>
@@ -63,44 +60,6 @@ export class Sidebar extends Component {
                 </nav>
                 <ul className="user-menu scrollable">
                     {conversationsArr}
-                    <li>
-                        <div className="user-photo">
-                            <div className="message-indicator">1</div>
-                        </div>
-                        <div className="user-name">John Faustino</div>
-                        <div className="short-message">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</div>
-                        <time>52 m</time>
-                    </li>
-                    <li className="is-active">
-                        <div className="user-photo"></div>
-                        <div className="user-name">Cassia Tofano</div>
-                        <div className="short-message">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</div>
-                        <time>now</time>
-                    </li>
-                    <li>
-                        <div className="user-photo">
-                            <div className="message-indicator">1</div>
-                        </div>
-                        <div className="user-name">John Faustino</div>
-                        <div className="short-message">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</div>
-                        <time>52 m</time>
-                    </li>
-                    <li>
-                        <div className="user-photo">
-                            <div className="message-indicator">1</div>
-                        </div>
-                        <div className="user-name">John Faustino</div>
-                        <div className="short-message">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</div>
-                        <time>52 m</time>
-                    </li>
-                    <li>
-                        <div className="user-photo">
-                            <div className="message-indicator">1</div>
-                        </div>
-                        <div className="user-name">John Faustino</div>
-                        <div className="short-message">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</div>
-                        <time>52 m</time>
-                    </li>
                 </ul>
             </aside>    
         );
