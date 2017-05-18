@@ -21,6 +21,13 @@ function messagesIsLoading (bool) {
     }
 }
 
+function conversationsIsLoading (bool) {
+    return {
+        type: 'CONVERSATIONS_IS_LOADING',
+        isLoading: bool
+    }
+}
+
 function receiveMessages (messages) {
     return {
         type: 'RECEIVE_MESSAGES',
@@ -38,7 +45,7 @@ function receiveConverstions (conversations) {
 export function fetchMessages (fromDate) {
     return (dispatch) => {
         dispatch(messagesIsLoading(true));
-        fetch(`http://eleksfrontendcamp-mockapitron.rhcloud.com/messages?from=${fromDate}`)
+        fetch(`http://eleksfrontendcamp-mockapitron.rhcloud.com/messages`) //?from=${fromDate}
         .then((res) => {
                 dispatch(messagesIsLoading(false));
                 return res;
@@ -53,9 +60,14 @@ export function fetchMessages (fromDate) {
 
 export function fetchConversations (userId) {
     return (dispatch) => {
+        dispatch(conversationsIsLoading(true));
         fetch(`http://localhost:3000/chat/${userId}`)
-        .then( res => res.json())
+        .then( res => {
+            return res;
+        })
+        .then((res) => res.json())
         .then( data => {
+            dispatch(conversationsIsLoading(false));
             dispatch(receiveConverstions(data));
         });
     }

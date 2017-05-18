@@ -6,7 +6,9 @@ import { sendMessage, receiveNewMessage, fetchMessages, fetchConversations } fro
 const mapStateToProps = (state) => {
     return {
         messageStore: state.chat,
-        isLoading: state.messagesIsLoading
+        conversationStore: state.conversations,
+        isLoading: state.messagesIsLoading,
+        conversationsIsLoading: state.conversationsIsLoading
     }
 }
 

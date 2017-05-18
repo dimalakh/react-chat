@@ -1,6 +1,6 @@
 import './messages.scss';
 
-import  React, { Component } from 'react';
+import React, { Component } from 'react';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import moment from 'moment';
 
