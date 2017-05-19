@@ -2,6 +2,7 @@ import './sidebar.scss';
 
 import  React, { Component } from 'react';
 import  moment from 'moment';
+import { Conversation } from '../conversation/conversation';
 
 export class Sidebar extends Component {
     constructor (props) {
@@ -41,15 +42,12 @@ export class Sidebar extends Component {
 
     render() {
         const conversationsArr = this.props.conversations.map((conversation, index) => {
-
+            
             return (
-                 <li key={index} onClick={this.onConversationClick.bind(this, conversation)}>
-                    <div className="user-photo">
-                        <div className="message-indicator">1</div>
-                    </div>
-                    <div className="user-name">{conversation._id}</div>
-                    
-                </li>   
+                 <Conversation 
+                  key={index}
+                  onClick={this.onConversationClick.bind(this, conversation)}
+                  data={conversation} />  
             );
         });
 
