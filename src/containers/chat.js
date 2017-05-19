@@ -1,10 +1,11 @@
 import { connect } from 'react-redux';
 
 import { Chat } from '../components/chat/chat';
-import { sendMessage, receiveNewMessage, fetchMessages, fetchConversations } from '../actions/chat';
+import { sendMessage, receiveNewMessage, fetchMessages, setActiveConversation, fetchConversations, createConversation } from '../actions/chat';
 
 const mapStateToProps = (state) => {
     return {
+        activeConversation: state.activeConversation,
         messageStore: state.chat,
         conversationStore: state.conversations,
         isLoading: state.messagesIsLoading,
@@ -24,6 +25,12 @@ const mapDispatchToProps = (dispatch) => ({
     },
     onReceiveConversations: (userId) => {
         dispatch(fetchConversations(userId));
+    },
+    onCreateCoversation: (userId) => {
+        dispatch(createConversation(userId));
+    },
+    onSelectConversation: (conversationId) => {
+        dispatch(setActiveConversation(conversationId));
     }
 });
 

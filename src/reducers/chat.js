@@ -16,6 +16,15 @@ export default function chat (state = initialState, action) {
      } 
 }
 
+export function activeConversation (state = '', action) {
+    switch (action.type) {
+        case 'SET_ACTIVE_CONVERSATION':
+            return action.conversationId;
+         default:
+            return state;
+    }
+}
+
 export function messagesIsLoading (state = false, action) {
     switch (action.type) {
         case 'MESSAGES_IS_LOADING':

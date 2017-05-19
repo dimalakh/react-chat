@@ -43,6 +43,13 @@ function receiveConverstions (conversations) {
     }
 }
 
+export function setActiveConversation (conversationId) {
+    return {
+        type: 'SET_ACTIVE_CONVERSATION',
+        conversationId
+    }
+}
+
 export function fetchMessages (conversationId) {
     return (dispatch) => {
         dispatch(messagesIsLoading(true));
@@ -73,3 +80,21 @@ export function fetchConversations (userId) {
         });
     }
 }
+
+export function createConversation (userId) {
+    console.log(userId);
+    return (dispatch) => {
+        let myHeaders = new Headers();
+        myHeaders.set('Content-Type', 'application/json');
+        let myInit = {
+            method: 'post',
+            headers: myHeaders,
+            mode: 'cors',
+            body: JSON.stringify({
+                'membersIds': ['591eea0a8cb1435d957163a9', '591eea348cb1435d957163aa']
+            })
+        }
+        fetch(`${API_CONFIG.BASE}/chat/conversation`, myInit)
+        .then(console.log('ok'));
+    };
+} 

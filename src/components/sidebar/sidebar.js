@@ -29,14 +29,18 @@ export class Sidebar extends Component {
         }
     }
 
+    onCreateClick() {
+        console.log('test');
+        const usersIds = [1,2,3];
+        this.props.createChat(usersIds);
+    }
+
     onConversationClick(conversation) {
         this.props.selectConversation(conversation._id);
     }
 
     render() {
-        console.log(this.props.conversations);
         const conversationsArr = this.props.conversations.map((conversation, index) => {
-            const timeStamp = moment(conversation.lastMsg.date).fromNow();
 
             return (
                  <li key={index} onClick={this.onConversationClick.bind(this, conversation)}>
@@ -44,8 +48,7 @@ export class Sidebar extends Component {
                         <div className="message-indicator">1</div>
                     </div>
                     <div className="user-name">{conversation._id}</div>
-                    <div className="short-message">{conversation.lastMsg.msg}</div>
-                    <time>{timeStamp}</time>
+                    
                 </li>   
             );
         });
@@ -58,7 +61,7 @@ export class Sidebar extends Component {
                         <input type="search" />
                         <button className="search-icon"></button>
                     </form>
-                    <button id="menu-toggler" className="menu-icon"></button>
+                    <button id="menu-toggler" onClick={this.onCreateClick.bind(this)} className="menu-icon"></button>
                 </nav>
                 <ul className="user-menu scrollable">
                     {conversationsArr}

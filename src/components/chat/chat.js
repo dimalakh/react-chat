@@ -20,12 +20,12 @@ export class Chat extends Component {
     componentWillMount() {
         // fromDate == datebefore in miliseconds
         const fromDate = moment().add(-1, 'days').format('x');
-        this.props.onReceiveMessages('5916ec4d11ba5e7efcbd0e51');
+        //this.props.onReceiveMessages('591eea0a8cb1435d957163a9');
     }
 
     componentDidMount() {
         this.isLoggedIn();
-        this.props.onReceiveConversations('5916f46068ad8f07a2472b03');
+        this.props.onReceiveConversations('591eea348cb1435d957163aa');
         this.socket.on('connect', () => {
           this.socket.emit('authenticate', { token: JSON.parse(localStorage.getItem('data')).token })
         });
@@ -48,19 +48,28 @@ export class Chat extends Component {
     }
 
     sendMessage(msg) {
-        this.socket.emit('message', {msg, chatId: '5916ec4d11ba5e7efcbd0e51'});
+        this.socket.emit('message', {
+            msg, 
+            conversationId: this.props.activeConversation
+        });
     }
 
     selectConversation(chatId) {
-        console.log(chatId + 'axa');
+        console.log(chatId);
+        this.socket.emit('join-room', chatId);
         this.props.onReceiveMessages(chatId);
+        this.props.onSelectConversation(chatId);
+    }
+
+    createNewChat(usersId) {
+        this.props.onCreateCoversation(usersId);
     }
     
     
     render() {
         return (
             <div className='chat'>
-                <Sidebar selectConversation={this.selectConversation.bind(this)} conversations={this.props.conversationStore}/>
+                <Sidebar createChat={this.createNewChat.bind(this)} selectConversation={this.selectConversation.bind(this)} conversations={this.props.conversationStore}/>
                 <section className="main-frame">
                     <Toolbar history={this.props.history} showFromDate={this.showMessagesFromDate.bind(this)}/>
                     <Messages loader={this.props.isLoading} messages={this.props.messageStore}/>
