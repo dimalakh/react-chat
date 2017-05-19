@@ -15,6 +15,7 @@ export class Chat extends Component {
     constructor (props) {
         super(props);
         this.socket = io.connect(`${API_CONFIG.BASE}`);
+        this.userData = JSON.parse(localStorage.getItem('data'));
     }
 
     componentWillMount() {
@@ -26,9 +27,9 @@ export class Chat extends Component {
 
     componentDidMount() {
         this.isLoggedIn();
-        this.props.onReceiveConversations('591eea348cb1435d957163aa');
+        this.props.onReceiveConversations(this.userData.user._id);
         this.socket.on('connect', () => {
-          this.socket.emit('authenticate', { token: JSON.parse(localStorage.getItem('data')).token })
+          this.socket.emit('authenticate', { token: this.userData.token })
         });
         this.socket.on('message', msg => this.handleReceiveNewMessage(msg));
     }
@@ -56,7 +57,6 @@ export class Chat extends Component {
     }
 
     selectConversation(chatId) {
-        console.log(chatId);
         this.socket.emit('join-room', chatId);
         this.props.onReceiveMessages(chatId);
         this.props.onSelectConversation(chatId);
@@ -68,6 +68,7 @@ export class Chat extends Component {
     
     
     render() {
+        
         return (
             <div className='chat'>
                 <Sidebar createChat={this.createNewChat.bind(this)} selectConversation={this.selectConversation.bind(this)} conversations={this.props.conversationStore}/>

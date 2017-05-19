@@ -5,6 +5,7 @@ import { sendMessage, receiveNewMessage, fetchMessages, setActiveConversation, l
 
 const mapStateToProps = (state) => {
     return {
+        userData: state.userData,
         activeConversation: state.activeConversation,
         messageStore: state.chat,
         conversationStore: state.conversations,
