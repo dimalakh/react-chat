@@ -19,6 +19,7 @@ export class Chat extends Component {
 
     componentWillMount() {
         // fromDate == datebefore in miliseconds
+        this.props.onLoadStorage();
         const fromDate = moment().add(-1, 'days').format('x');
         //this.props.onReceiveMessages('591eea0a8cb1435d957163a9');
     }

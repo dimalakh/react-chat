@@ -33,3 +33,12 @@ export function messagesIsLoading (state = false, action) {
             return state;
     }
 }
+
+export function userData (state = {}, action) {
+    switch (action.type) {
+        case 'LOAD_USER_DATA':
+            return action.userData;
+        default:
+            return state;
+    }
+}

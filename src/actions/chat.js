@@ -1,20 +1,6 @@
 import { API_CONFIG } from '../api-config.js';
 import fetch from 'isomorphic-fetch';
 
-export const sendMessage = (message) => {
-    return {
-        type: 'SEND_MESSAGE',
-        msg: message
-    }
-}
-
-export const receiveNewMessage = (message) => {
-    return {
-        type: 'RECEIVE_NEW_MESSAGE',
-        message
-    }
-}
-
 function messagesIsLoading (bool) {
     return {
         type: 'MESSAGES_IS_LOADING',
@@ -43,14 +29,43 @@ function receiveConverstions (conversations) {
     }
 }
 
-export function setActiveConversation (conversationId) {
+export const sendMessage = (message) => {
+    return {
+        type: 'SEND_MESSAGE',
+        msg: message
+    }
+}
+
+export const receiveNewMessage = (message) => {
+    return {
+        type: 'RECEIVE_NEW_MESSAGE',
+        message
+    }
+}
+
+export const loadUserData = (userData) => {
+    return {
+        type: 'LOAD_USER_DATA',
+        userData
+    }
+}
+
+export const setActiveConversation = (conversationId) => {
     return {
         type: 'SET_ACTIVE_CONVERSATION',
         conversationId
     }
 }
 
-export function fetchMessages (conversationId) {
+//loads userData from localStorage
+export const loadLocalStorage = () => {
+    return (dispatch) => {
+       const localData = JSON.parse(localStorage.getItem('data'));
+       dispatch(loadUserData(localData));
+    }
+}
+
+export const fetchMessages = (conversationId) => {
     return (dispatch) => {
         dispatch(messagesIsLoading(true));
         fetch(`${API_CONFIG.BASE}/chat/conversation/${conversationId}`)
@@ -66,7 +81,7 @@ export function fetchMessages (conversationId) {
     }    
 }
 
-export function fetchConversations (userId) {
+export const fetchConversations = (userId) => {
     return (dispatch) => {
         dispatch(conversationsIsLoading(true));
         fetch(`${API_CONFIG.BASE}/chat/${userId}`)
@@ -81,8 +96,7 @@ export function fetchConversations (userId) {
     }
 }
 
-export function createConversation (userId) {
-    console.log(userId);
+export const createConversation = (userId) => {
     return (dispatch) => {
         let myHeaders = new Headers();
         myHeaders.set('Content-Type', 'application/json');
@@ -98,3 +112,4 @@ export function createConversation (userId) {
         .then(console.log('ok'));
     };
 } 
+

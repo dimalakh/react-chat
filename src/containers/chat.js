@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 
 import { Chat } from '../components/chat/chat';
-import { sendMessage, receiveNewMessage, fetchMessages, setActiveConversation, fetchConversations, createConversation } from '../actions/chat';
+import { sendMessage, receiveNewMessage, fetchMessages, setActiveConversation, loadLocalStorage, fetchConversations, createConversation } from '../actions/chat';
 
 const mapStateToProps = (state) => {
     return {
@@ -14,6 +14,9 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchToProps = (dispatch) => ({
+    onLoadStorage: () => {
+        dispatch(loadLocalStorage());
+    },
     onSendMessage: (message) => {
         dispatch(sendMessage(message));
     },

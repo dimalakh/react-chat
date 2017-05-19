@@ -1,7 +1,6 @@
 import { API_CONFIG } from '../api-config.js';
 
 const logInSuccess = (data) => {
-    console.log('login');
     return {
         type: 'LOG_IN_SUCCESS',
         data
@@ -9,7 +8,6 @@ const logInSuccess = (data) => {
 }
 
 const signUpSuccess = (data) => {
-    console.log('login');
     return {
         type: 'SIGN_UP_SUCCESS',
         data
