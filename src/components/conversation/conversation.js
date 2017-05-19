@@ -13,16 +13,12 @@ export class Conversation extends Component {
     }
 
     render() {
-        const timeStamp = moment(this.props.data.lastMsg.date).fromNow();
+        const timeStamp = moment(this.props.data.lastMsg.date).format("HH:mm");
         const conversationName = this.props.data.users.map((username) => {
             if ( username !== JSON.parse(localStorage.getItem('data')).user.username) {
                 return  username;
             }
         });
-
-       
-
-        console.log(conversationName);
 
         return (
             <li onClick={this.activateConversation.bind(this)}>
