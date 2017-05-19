@@ -42,11 +42,10 @@ export class Sidebar extends Component {
 
     render() {
         const conversationsArr = this.props.conversations.map((conversation, index) => {
-            
             return (
                  <Conversation 
                   key={index}
-                  onClick={this.onConversationClick.bind(this, conversation)}
+                  conversationClick={this.onConversationClick.bind(this)}
                   data={conversation} />  
             );
         });
