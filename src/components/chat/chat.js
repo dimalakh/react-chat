@@ -40,6 +40,8 @@ export class Chat extends Component {
         this.socket.on('disconnect-chat', (member) => {
             this.props.onLeaveUser(member._id);
         });
+
+        this.props.onReceiveUsers();
     }
 
     isLoggedIn() {

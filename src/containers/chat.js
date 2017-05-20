@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 
 import { Chat } from '../components/chat/chat';
-import { sendMessage, receiveNewMessage, setOfflineUser, setOnlineUser, fetchMessages, setActiveConversation, loadLocalStorage, fetchConversations, createConversation } from '../actions/chat';
+import { sendMessage, receiveNewMessage, fetchUsers, setOfflineUser, setOnlineUser, fetchMessages, setActiveConversation, loadLocalStorage, fetchConversations, createConversation } from '../actions/chat';
 
 const mapStateToProps = (state) => {
     return {
@@ -41,6 +41,9 @@ const mapDispatchToProps = (dispatch) => ({
     },
     onLeaveUser: (userId) => {
         dispatch(setOfflineUser(userId));
+    },
+    onReceiveUsers: () => {
+        dispatch(fetchUsers());
     }
 });
 

@@ -33,7 +33,11 @@ export class Sidebar extends Component {
     onCreateClick() {
         console.log('test');
         const usersIds = [1,2,3];
-        this.props.createChat(usersIds);
+        //this.props.createChat(usersIds);
+    }
+
+    handleUserSearch() {
+        console.log('users');
     }
 
     onConversationClick(conversation) {
@@ -41,7 +45,14 @@ export class Sidebar extends Component {
     }
 
     render() {
-        const conversationsArr = this.props.conversations.map((conversation, index) => {
+        const conversationsArr = this.props.conversations.sort((current, next) => {
+            if (current.lastMsg.date > next.lastMsg.date) {
+                return -1;
+            } else {
+                return 1;
+            }
+        })
+        .map((conversation, index) => {
             return (
                  <Conversation 
                   key={index}
@@ -50,12 +61,14 @@ export class Sidebar extends Component {
                   data={conversation} />  
             );
         });
+
+        
         return (
             <aside className={this.toggler}>
                 <nav className="sidebar-nav">
                     <button onClick={this.hendlerToggleSidebar.bind(this)} className="sidebar-toggle"></button>
                     <form>
-                        <input type="search" />
+                        <input type="search" onFocus={this.handleUserSearch} />
                         <button className="search-icon"></button>
                     </form>
                     <button id="menu-toggler" onClick={this.onCreateClick.bind(this)} className="menu-icon"></button>

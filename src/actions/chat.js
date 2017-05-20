@@ -71,6 +71,13 @@ export const setOfflineUser = (userId) => {
     }
 }
 
+export const loadAllUsers = (users) => {
+    return {
+        type: 'LOAD_ALL_USERS',
+        users
+    }
+}
+
 // export const setUserStatus = (userId) => {
 //     return (dispatch) => {
 
@@ -132,4 +139,14 @@ export const createConversation = (userId) => {
         .then(console.log('ok'));
     };
 } 
+
+export const fetchUsers = () => {
+    return (dispatch) => {
+        fetch(`${API_CONFIG.BASE}/users`)
+        .then((res) => res.json())
+        .then(data => { 
+            dispatch(loadAllUsers(data));
+        });
+    }
+}
 

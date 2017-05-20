@@ -42,3 +42,12 @@ export function userData (state = {}, action) {
             return state;
     }
 }
+
+export function allUsers (state = [], action) {
+    switch (action.type) {
+        case 'LOAD_ALL_USERS':
+            return action.users;
+        default:
+            return state;
+    }
+}
