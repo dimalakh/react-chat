@@ -57,6 +57,19 @@ export const setActiveConversation = (conversationId) => {
     }
 }
 
+export const setOnlineUser = (userId) => {
+    return {
+        type: 'SET_ONLINE_USER',
+        userId
+    }
+}
+
+// export const setUserStatus = (userId) => {
+//     return (dispatch) => {
+
+//     }
+// }
+
 //loads userData from localStorage
 export const loadLocalStorage = () => {
     return (dispatch) => {

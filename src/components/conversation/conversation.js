@@ -6,7 +6,13 @@ import  moment from 'moment';
 export class Conversation extends Component {
     constructor (props) {
         super(props);
+        this.state = {};
         this.isOnline = this.checkOnline();
+    }
+
+    componentWillReceiveProps() {
+        this.isOnline = this.checkOnline();
+        this.setState({users: this.props.data.users});
     }
 
     activateConversation() {
@@ -26,7 +32,6 @@ export class Conversation extends Component {
     }
 
     render() {
-        console.log(this.online);
         const timeStamp = moment(this.props.data.lastMsg.date).format("HH:mm");
         const isActive = this.props.activeConversation === this.props.data._id ? 'is-active' : '';
         const conversationName = this.props.data.users.map((user) => {

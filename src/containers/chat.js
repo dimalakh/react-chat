@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 
 import { Chat } from '../components/chat/chat';
-import { sendMessage, receiveNewMessage, fetchMessages, setActiveConversation, loadLocalStorage, fetchConversations, createConversation } from '../actions/chat';
+import { sendMessage, receiveNewMessage, setOnlineUser, fetchMessages, setActiveConversation, loadLocalStorage, fetchConversations, createConversation } from '../actions/chat';
 
 const mapStateToProps = (state) => {
     return {
@@ -35,6 +35,9 @@ const mapDispatchToProps = (dispatch) => ({
     },
     onSelectConversation: (conversationId) => {
         dispatch(setActiveConversation(conversationId));
+    },
+    onJoinUser: (userId) => {
+        dispatch(setOnlineUser(userId));
     }
 });
 
