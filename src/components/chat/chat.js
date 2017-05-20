@@ -29,9 +29,17 @@ export class Chat extends Component {
         this.isLoggedIn();
         this.props.onReceiveConversations(this.userData.user._id);
         this.socket.on('connect', () => {
-          this.socket.emit('authenticate', { token: this.userData.token })
+          this.socket.emit('authenticate', { token: this.userData.token });
+          
         });
+        this.socket.emit('join-chat', {user: this.userData.user });
         this.socket.on('message', msg => this.handleReceiveNewMessage(msg));
+        this.socket.on('join-chat', (member) => {
+            console.log(member);
+        });
+        this.socket.on('disconnect-chat', (member) => {
+            console.log(member);
+        });
     }
 
     isLoggedIn() {
@@ -65,7 +73,6 @@ export class Chat extends Component {
     createNewChat(usersId) {
         this.props.onCreateCoversation(usersId);
     }
-    
     
     render() {
         
