@@ -46,10 +46,10 @@ export class Sidebar extends Component {
                  <Conversation 
                   key={index}
                   conversationClick={this.onConversationClick.bind(this)}
+                  activeConversation={this.props.activeConversation}
                   data={conversation} />  
             );
         });
-
         return (
             <aside className={this.toggler}>
                 <nav className="sidebar-nav">

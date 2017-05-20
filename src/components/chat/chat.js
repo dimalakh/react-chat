@@ -71,7 +71,7 @@ export class Chat extends Component {
         
         return (
             <div className='chat'>
-                <Sidebar createChat={this.createNewChat.bind(this)} selectConversation={this.selectConversation.bind(this)} conversations={this.props.conversationStore}/>
+                <Sidebar activeConversation={this.props.activeConversation} createChat={this.createNewChat.bind(this)} selectConversation={this.selectConversation.bind(this)} conversations={this.props.conversationStore}/>
                 <section className="main-frame">
                     <Toolbar history={this.props.history} showFromDate={this.showMessagesFromDate.bind(this)}/>
                     <Messages loader={this.props.isLoading} messages={this.props.messageStore}/>
