@@ -64,6 +64,13 @@ export const setOnlineUser = (userId) => {
     }
 }
 
+export const setOfflineUser = (userId) => {
+    return {
+        type: 'SET_OFFLINE_USER',
+        userId
+    }
+}
+
 // export const setUserStatus = (userId) => {
 //     return (dispatch) => {
 

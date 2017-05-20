@@ -36,11 +36,9 @@ export class Chat extends Component {
         this.socket.on('message', msg => this.handleReceiveNewMessage(msg));
         this.socket.on('join-chat', (member) => {
             this.props.onJoinUser(member._id);
-            
-            console.log(member);
         });
         this.socket.on('disconnect-chat', (member) => {
-            console.log(member);
+            this.props.onLeaveUser(member._id);
         });
     }
 

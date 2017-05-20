@@ -23,7 +23,25 @@ export default function conversations (state = initialState, action) {
                 }
             });
             return updatedConv;
-
+        case 'SET_OFFLINE_USER':
+            const updatedConvOff = state.map( conv => {
+                return {
+                    _id: conv._id,
+                    users: conv.users.map( user => {
+                        if (user._id === action.userId) {
+                            return {
+                                _id: user._id,
+                                username: user.username,
+                                online: false
+                            }
+                        } else {
+                            return user;
+                        }
+                    }),
+                    lastMsg: conv.lastMsg
+                }
+            });
+            return updatedConvOff;
         default:
             return state;
      } 
