@@ -141,12 +141,12 @@ export const createConversation = (userId) => {
 } 
 
 export const fetchUsers = () => {
-    return (dispatch) => {
+    return (
         fetch(`${API_CONFIG.BASE}/users`)
         .then((res) => res.json())
         .then(data => { 
-            dispatch(loadAllUsers(data));
-        });
-    }
+          return data;  //dispatch(loadAllUsers(data));
+        })
+    )
 }
 

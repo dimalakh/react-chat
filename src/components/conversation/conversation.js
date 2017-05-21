@@ -7,21 +7,21 @@ export class Conversation extends Component {
     constructor (props) {
         super(props);
         this.state = {};
-        this.isOnline = this.checkOnline();
+        this.isOnline = this.checkOnline(this.props.data.users);
     }
 
-    componentWillReceiveProps() {
-        this.isOnline = this.checkOnline();
-        this.setState({users: this.props.data.users});
+    componentWillReceiveProps(nextProps) {
+        this.isOnline = this.checkOnline(nextProps.data.users);
+        this.setState({data:this.isOnline});
     }
 
     activateConversation() {
         this.props.conversationClick(this.props.data);
     }
 
-    checkOnline() {
+    checkOnline(members) {
             let online = false;
-            this.props.data.users.forEach( user => {
+            members.forEach( user => {
                 if ( user.username !== JSON.parse(localStorage.getItem('data')).user.username) {
                     if ( user.online ) {
                         online = user.online;

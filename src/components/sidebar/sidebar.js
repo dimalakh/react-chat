@@ -3,13 +3,15 @@ import './sidebar.scss';
 import  React, { Component } from 'react';
 import  moment from 'moment';
 import { Conversation } from '../conversation/conversation';
+import { API_CONFIG } from '../../api-config';
 
 export class Sidebar extends Component {
     constructor (props) {
         super(props);
         this.state = {
-            sidebar: ''
+            data: []
         };
+        this.searchedUsers = [];
     }
 
     componentWillMount() {
@@ -30,6 +32,10 @@ export class Sidebar extends Component {
         }
     }
 
+    
+
+
+
     onCreateClick() {
         console.log('test');
         const usersIds = [1,2,3];
@@ -37,7 +43,17 @@ export class Sidebar extends Component {
     }
 
     handleUserSearch() {
-        console.log('users');
+        fetch(`${API_CONFIG.BASE}/users`)
+        .then((res) => res.json())
+        .then(data => { 
+            this.state = { data };
+            console.log(this.state);
+        })
+        
+    }
+
+    clearUserSearch() {
+        //this.searchedUsers = [];
     }
 
     onConversationClick(conversation) {
@@ -45,6 +61,23 @@ export class Sidebar extends Component {
     }
 
     render() {
+        const searchUsersArr = this.state.data.map( (user, index) => {
+            return (
+                <li key={user._id}>
+                    <div className="user-photo">
+                        { 
+                            user.online ?
+                            <div className="message-indicator"></div> :
+                            null
+                        }
+                    </div>
+                    <div className="user-name">{user.username}</div>
+                    
+                    <time>+</time>
+                </li>   
+            );
+        })
+
         const conversationsArr = this.props.conversations.sort((current, next) => {
             if (current.lastMsg.date > next.lastMsg.date) {
                 return -1;
@@ -63,18 +96,22 @@ export class Sidebar extends Component {
         });
 
         
+        
         return (
             <aside className={this.toggler}>
                 <nav className="sidebar-nav">
                     <button onClick={this.hendlerToggleSidebar.bind(this)} className="sidebar-toggle"></button>
                     <form>
-                        <input type="search" onFocus={this.handleUserSearch} />
+                        <input type="search"
+                         onFocus={this.handleUserSearch.bind(this)}
+                          />
                         <button className="search-icon"></button>
                     </form>
                     <button id="menu-toggler" onClick={this.onCreateClick.bind(this)} className="menu-icon"></button>
                 </nav>
                 <ul className="user-menu scrollable">
                     {conversationsArr}
+                    {searchUsersArr}
                 </ul>
             </aside>    
         );

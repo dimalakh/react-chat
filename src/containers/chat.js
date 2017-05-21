@@ -10,7 +10,8 @@ const mapStateToProps = (state) => {
         messageStore: state.chat,
         conversationStore: state.conversations,
         isLoading: state.messagesIsLoading,
-        conversationsIsLoading: state.conversationsIsLoading
+        conversationsIsLoading: state.conversationsIsLoading,
+        fetchedUsers: state.allUsers
     }
 }
 

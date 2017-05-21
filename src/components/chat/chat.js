@@ -40,8 +40,6 @@ export class Chat extends Component {
         this.socket.on('disconnect-chat', (member) => {
             this.props.onLeaveUser(member._id);
         });
-
-        this.props.onReceiveUsers();
     }
 
     isLoggedIn() {
@@ -80,7 +78,14 @@ export class Chat extends Component {
         
         return (
             <div className='chat'>
-                <Sidebar activeConversation={this.props.activeConversation} createChat={this.createNewChat.bind(this)} selectConversation={this.selectConversation.bind(this)} conversations={this.props.conversationStore}/>
+                <Sidebar 
+                activeConversation={this.props.activeConversation}
+                createChat={this.createNewChat.bind(this)}
+                selectConversation={this.selectConversation.bind(this)}
+                conversations={this.props.conversationStore}
+                getUsers={this.props.onReceiveUsers.bind(this)}
+                fetchedUsers={this.props.fetchedUsers}
+                />
                 <section className="main-frame">
                     <Toolbar history={this.props.history} showFromDate={this.showMessagesFromDate.bind(this)}/>
                     <Messages loader={this.props.isLoading} messages={this.props.messageStore}/>
