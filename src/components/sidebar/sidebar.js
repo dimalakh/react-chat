@@ -45,11 +45,24 @@ export class Sidebar extends Component {
         .then(data => { 
             this.setState({searchedUsers: data});
         })
-        
     }
 
     clearUserSearch() {
         this.setState({searchedUsers: []});
+    }
+
+    handleUserSearch(e) {
+        fetch(`${API_CONFIG.BASE}/users`)
+        .then((res) => res.json())
+        .then(data => { 
+            const tempArr = data.filter(user => {
+                const regex = new RegExp(this.searchInput.value, 'gi');
+                if(user.username.match(regex)) {
+                    return user;
+                }
+            });
+            this.setState({searchedUsers: tempArr})
+        })
     }
 
     onConversationClick(conversation) {
@@ -57,7 +70,8 @@ export class Sidebar extends Component {
     }
 
     render() {
-        const searchUsersArr = this.state.searchedUsers.map( (user, index) => {
+        const searchUsersArr = this.state.searchedUsers
+        .map( (user, index) => {
             return (
                 <UserSearchItem
                 clearSearch={this.clearUserSearch.bind(this)}
@@ -92,6 +106,8 @@ export class Sidebar extends Component {
                     <form>
                         <input type="search"
                          onFocus={this.handleUserSearch.bind(this)}
+                         onChange={this.handleUserSearch.bind(this)}
+                         ref={(input) => { this.searchInput = input; }}
                         />
                         <button className="search-icon"></button>
                     </form>
