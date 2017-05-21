@@ -33,10 +33,9 @@ export class Sidebar extends Component {
     }
 
     
-    onCreateClick() {
-        console.log('test');
-        const usersIds = [1,2,3];
-        //this.props.createChat(usersIds);
+    onCreateClick(usersIds) {
+        console.log(usersIds);
+        this.props.createChat(usersIds);
     }
 
     handleUserSearch() {
@@ -77,17 +76,18 @@ export class Sidebar extends Component {
                 clearSearch={this.clearUserSearch.bind(this)}
                 key={user._id}
                 data={user}
+                createConversation={this.onCreateClick.bind(this)}
                 />
             );
         })
 
-        const conversationsArr = this.props.conversations.sort((current, next) => {
-            if (current.lastMsg.date > next.lastMsg.date) {
-                return -1;
-            } else {
-                return 1;
-            }
-        })
+         const conversationsArr = this.props.conversations//.sort((current, next) => {
+        //     if (current.lastMsg.date > next.lastMsg.date) {
+        //         return -1;
+        //     } else {
+        //         return 1;
+        //     }
+        // })
         .map((conversation, index) => {
             return (
                  <Conversation 

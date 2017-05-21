@@ -123,8 +123,9 @@ export const fetchConversations = (userId) => {
     }
 }
 
-export const createConversation = (userId) => {
+export const createConversation = (usersIdArr) => {
     return (dispatch) => {
+        console.log(usersIdArr);
         let myHeaders = new Headers();
         myHeaders.set('Content-Type', 'application/json');
         let myInit = {
@@ -132,7 +133,7 @@ export const createConversation = (userId) => {
             headers: myHeaders,
             mode: 'cors',
             body: JSON.stringify({
-                'membersIds': ['591eea0a8cb1435d957163a9', '591eea348cb1435d957163aa']
+                usersIds: usersIdArr
             })
         }
         fetch(`${API_CONFIG.BASE}/chat/conversation`, myInit)

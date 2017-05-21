@@ -9,6 +9,11 @@ export class UserSearchItem extends Component {
 
     createConversation () {
         console.log('hola');
+        const usersIds = [
+            JSON.parse(localStorage.getItem('data')).user._id,
+            this.props.data._id
+        ]
+        this.props.createConversation(usersIds);
         this.props.clearSearch();
     }
 
