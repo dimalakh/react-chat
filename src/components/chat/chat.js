@@ -27,10 +27,8 @@ export class Chat extends Component {
 
     componentDidMount() {
         this.isLoggedIn();
-        this.props.onReceiveConversations(this.userData.user._id);
         this.socket.on('connect', () => {
           this.socket.emit('authenticate', { token: this.userData.token });
-          
         });
         this.socket.emit('join-chat', {user: this.userData.user });
         this.socket.on('message', msg => this.handleReceiveNewMessage(msg));
@@ -71,8 +69,8 @@ export class Chat extends Component {
         this.props.onSelectConversation(chatId);
     }
 
-    createNewChat(usersId) {
-        this.props.onCreateCoversation(usersId);
+    createNewChat(userId, usersId) {
+        this.props.onCreateCoversation(userId, usersId);
     }
     
     render() {
@@ -86,6 +84,8 @@ export class Chat extends Component {
                 conversations={this.props.conversationStore}
                 getUsers={this.props.onReceiveUsers.bind(this)}
                 fetchedUsers={this.props.fetchedUsers}
+                userData={this.userData}
+                getConversations={this.props.onReceiveConversations.bind(this)}
                 />
                 <section className="main-frame">
                     <Toolbar history={this.props.history} showFromDate={this.showMessagesFromDate.bind(this)}/>

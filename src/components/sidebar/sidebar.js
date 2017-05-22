@@ -18,6 +18,10 @@ export class Sidebar extends Component {
         this.toggler = this.state.sidebar;
     }
 
+    componentDidMount() {
+        this.props.getConversations(this.props.userData.user._id);
+    }
+
     hendlerToggleSidebar() {
         if (this.toggler == 'toggled') {
             this.toggler = '';
@@ -31,11 +35,9 @@ export class Sidebar extends Component {
             });
         }
     }
-
     
     onCreateClick(usersIds) {
-        console.log(usersIds);
-        this.props.createChat(usersIds);
+        this.props.createChat(this.props.userData.user._id, usersIds);
     }
 
     handleUserSearch() {

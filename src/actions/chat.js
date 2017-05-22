@@ -113,8 +113,8 @@ export function fetchConversations (userId) {
     };
 }
 
-export function createConversation (usersIdArr) {
-    return () => {
+export function createConversation (creatorId, usersIdArr) {
+    return (dispatch) => {
         let myHeaders = new Headers();
         myHeaders.set('Content-Type', 'application/json');
         let myInit = {
@@ -126,7 +126,9 @@ export function createConversation (usersIdArr) {
             })
         };
         fetch(`${API_CONFIG.BASE}/chat/conversation`, myInit)
-        .then(console.log('ok'));
+        .then(() => {
+            dispatch(fetchConversations(creatorId));
+        });
     };
 }
 

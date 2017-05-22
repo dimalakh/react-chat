@@ -31,8 +31,8 @@ const mapDispatchToProps = (dispatch) => ({
     onReceiveConversations: (userId) => {
         dispatch(fetchConversations(userId));
     },
-    onCreateCoversation: (userId) => {
-        dispatch(createConversation(userId));
+    onCreateCoversation: (userId, userIds) => {
+        dispatch(createConversation(userId, userIds));
     },
     onSelectConversation: (conversationId) => {
         dispatch(setActiveConversation(conversationId));

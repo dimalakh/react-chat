@@ -1,3 +1,3 @@
 export const API_CONFIG = {
-    BASE:  `http://localhost:3000`
+    BASE:  `https://secret-eyrie-10811.herokuapp.com`
 }
