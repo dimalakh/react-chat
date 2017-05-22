@@ -7,5 +7,3 @@ import createBrowserHistory from 'history/createBrowserHistory';
 
 export const history = createBrowserHistory();
 export const store = createStore(rootReducer, initialState, composeWithDevTools(applyMiddleware(thunk)));
-
-
