@@ -81,13 +81,13 @@ export class Sidebar extends Component {
             );
         })
 
-         const conversationsArr = this.props.conversations//.sort((current, next) => {
-        //     if (current.lastMsg.date > next.lastMsg.date) {
-        //         return -1;
-        //     } else {
-        //         return 1;
-        //     }
-        // })
+         const conversationsArr = this.props.conversations.sort((current, next) => {
+             if (current.lastMsg.date >= next.lastMsg.date) {
+                 return -1;
+             } else {
+                 return 1;
+             }
+         })
         .map((conversation, index) => {
             return (
                  <Conversation 

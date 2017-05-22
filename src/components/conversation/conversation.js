@@ -32,7 +32,7 @@ export class Conversation extends Component {
     }
 
     render() {
-        //const timeStamp = moment(this.props.data.lastMsg.date).format("HH:mm");
+        const timeStamp = moment(this.props.data.lastMsg.date).format("HH:mm");
         const isActive = this.props.activeConversation === this.props.data._id ? 'is-active' : '';
         const conversationName = this.props.data.users.map((user) => {
             if ( user.username !== JSON.parse(localStorage.getItem('data')).user.username) {
@@ -50,8 +50,8 @@ export class Conversation extends Component {
                      }
                 </div>
                 <div className="user-name">{conversationName}</div>
-                {/*<div className="short-message">{this.props.data.lastMsg.msg}</div>*/}
-                {/*<time>{timeStamp}</time>*/}
+                <div className="short-message">{this.props.data.lastMsg.msg}</div>
+                <time>{timeStamp}</time>
             </li>   
         );
     };    
