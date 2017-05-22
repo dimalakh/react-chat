@@ -60,7 +60,8 @@ export class Chat extends Component {
     sendMessage(msg) {
         this.socket.emit('message', {
             msg, 
-            conversationId: this.props.activeConversation
+            conversationId: this.props.activeConversation,
+            sender: this.props.userData.user
         });
     }
 
