@@ -1,9 +1,15 @@
 import { combineReducers } from 'redux';
 import { routerReducer } from 'react-router-redux';
-import chat, {messagesIsLoading} from './chat';
+import chat, {messagesIsLoading, activeConversation, userData, allUsers} from './chat';
+import conversations, {conversationsIsLoading} from './conversations';
 
 export default combineReducers({
     router: routerReducer,
+    allUsers,
     chat,
-    messagesIsLoading
+    userData,
+    activeConversation,
+    conversations,
+    messagesIsLoading,
+    conversationsIsLoading
 });

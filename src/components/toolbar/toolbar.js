@@ -26,8 +26,8 @@ export class Toolbar extends Component {
             <nav className="toolbar">
                 <button onClick={this.handleDisplayDropdown} className="message-icon"></button>
                 <div id="settingsDropdown" className="dropdown-content">
-                    <a data-lastHistory="-2" onClick={this.handleShowMessagesFrom.bind(this)}>Messages for last 2 days</a>
-                    <a data-lastHistory="-3" onClick={this.handleShowMessagesFrom.bind(this)}>Messages for last 5 days</a>
+                    <a data-lastHistory="-7" onClick={this.handleShowMessagesFrom.bind(this)}>Messages for last 2 days</a>
+                    <a data-lastHistory="-7" onClick={this.handleShowMessagesFrom.bind(this)}>Messages for last 5 days</a>
                     <a data-lastHistory="-7" onClick={this.handleShowMessagesFrom.bind(this)}>Messages for last 7 days</a>
                 </div>
                 <button onClick={this.logOut.bind(this)} className="user-icon"></button>

@@ -14,18 +14,13 @@ export class MessageForm extends Component {
         messageInput.innerHTML = '';
     }
 
-    
-
     render() {
         return (
             <form className="chat-message-form">
                 <div className="inner">
                     <div id="message-box" className="message-text" contentEditable="true">
                     </div>
-                    {/*<button id="smiles-button" className="smile-icon"></button>*/}
                     <button className='send-button' onClick={this.handleSubmit.bind(this)}>send</button>
-                    {/*<input id="attach" className="file-icon" type="file" />
-                    <label htmlFor="attach"></label>*/}
                 </div>
             </form>
         );

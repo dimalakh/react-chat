@@ -4,6 +4,7 @@ import  React, { Component } from 'react';
 import { connect } from 'react-redux';
 import moment from 'moment';
 
+import { API_CONFIG } from '../../api-config.js'
 import { Sidebar } from '../sidebar/sidebar';
 import { Toolbar } from '../toolbar/toolbar';
 import { Messages } from '../message/messages';
@@ -13,21 +14,30 @@ import { MessageForm } from '../message-form/message-form';
 export class Chat extends Component {
     constructor (props) {
         super(props);
-        this.socket = io.connect('https://eleksfrontendcamp-mockapitron.rhcloud.com:8000');
+        this.socket = io.connect(`${API_CONFIG.BASE}`);
+        this.userData = JSON.parse(localStorage.getItem('data'));
     }
 
     componentWillMount() {
         // fromDate == datebefore in miliseconds
+        this.props.onLoadStorage();
         const fromDate = moment().add(-1, 'days').format('x');
-        this.props.onReceiveMessages(fromDate);
+        //this.props.onReceiveMessages('591eea0a8cb1435d957163a9');
     }
 
     componentDidMount() {
         this.isLoggedIn();
         this.socket.on('connect', () => {
-          this.socket.emit('authenticate', { token: JSON.parse(localStorage.getItem('data')).token })
+          this.socket.emit('authenticate', { token: this.userData.token });
         });
+        this.socket.emit('join-chat', {user: this.userData.user });
         this.socket.on('message', msg => this.handleReceiveNewMessage(msg));
+        this.socket.on('join-chat', (member) => {
+            this.props.onJoinUser(member._id);
+        });
+        this.socket.on('disconnect-chat', (member) => {
+            this.props.onLeaveUser(member._id);
+        });
     }
 
     isLoggedIn() {
@@ -46,13 +56,37 @@ export class Chat extends Component {
     }
 
     sendMessage(msg) {
-        this.socket.emit('message', msg);
+        this.socket.emit('message', {
+            msg, 
+            conversationId: this.props.activeConversation,
+            sender: this.props.userData.user
+        });
+    }
+
+    selectConversation(chatId) {
+        this.socket.emit('join-room', chatId);
+        this.props.onReceiveMessages(chatId);
+        this.props.onSelectConversation(chatId);
+    }
+
+    createNewChat(userId, usersId) {
+        this.props.onCreateCoversation(userId, usersId);
     }
     
     render() {
+        
         return (
             <div className='chat'>
-                <Sidebar/>
+                <Sidebar 
+                activeConversation={this.props.activeConversation}
+                createChat={this.createNewChat.bind(this)}
+                selectConversation={this.selectConversation.bind(this)}
+                conversations={this.props.conversationStore}
+                getUsers={this.props.onReceiveUsers.bind(this)}
+                fetchedUsers={this.props.fetchedUsers}
+                userData={this.userData}
+                getConversations={this.props.onReceiveConversations.bind(this)}
+                />
                 <section className="main-frame">
                     <Toolbar history={this.props.history} showFromDate={this.showMessagesFromDate.bind(this)}/>
                     <Messages loader={this.props.isLoading} messages={this.props.messageStore}/>

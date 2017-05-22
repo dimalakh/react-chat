@@ -1,43 +1,42 @@
-const logInSuccess = (data) => {
-    console.log('login');
+import { API_CONFIG } from '../api-config.js';
+
+function logInSuccess (data) {
     return {
         type: 'LOG_IN_SUCCESS',
         data
-    }
+    };
 }
 
-const signUpSuccess = (data) => {
-    console.log('login');
-    return {
-        type: 'SIGN_UP_SUCCESS',
-        data
-    }
-}
+export function auth (type, name, password, history) {
+    return dispatch => {
+        const myHeaders = new Headers();
 
-export const auth = (type, name, password, history) => {
-    return (dispatch) => {
-        let myHeaders = new Headers();
         myHeaders.set('Content-Type', 'application/json');
-
-        let myInit = {
+        const myInit = {
             method: 'post',
             headers: myHeaders,
             mode: 'cors',
-            body: JSON.stringify({'username': name, 'password': password})
-        }
+            body: JSON.stringify({
+                username: name,
+                password
+            })
+        };
 
         switch (type) {
             case 'signup':
-                fetch(`https://eleksfrontendcamp-mockapitron.rhcloud.com/${type}`, myInit)
-                .then(console.log('ok'));
+                fetch(`${API_CONFIG.BASE}/auth/signup`, myInit)
+                .then(() => history.push('/auth/login'));
             case 'login':
-                 fetch(`https://eleksfrontendcamp-mockapitron.rhcloud.com/${type}`, myInit)
+                fetch(`${API_CONFIG.BASE}/auth/login`, myInit)
                 .then(res => res.json())
                 .then(res => {
                     localStorage.setItem('data', JSON.stringify(res));
                     dispatch(logInSuccess(res));
                 })
                 .then(() => history.push('/chat'));
+            default:
+                fetch(`${API_CONFIG.BASE}/auth/signup`, myInit)
+                .then(() => history.push('/auth/login'));
         }
-    }
+    };
 }

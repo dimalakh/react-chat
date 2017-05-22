@@ -77,17 +77,17 @@
             float: left;
             background-image: url('/images/user-2.jpg');
             @include round-image(50px);        
-            
-            .message-indicator {
-                width: 18px;
-                height: 18px;
-                float: right;
-                border-radius: 50%;
-                background-color: $bright-accent;
-                border: 2px solid $bright-primary;
-                text-align: center;
-                 @include font(.65rem, 300, $text-bright-white);
-            }
+        }
+
+        .message-indicator {
+            width: 15px;
+            height: 15px;
+            float: right;
+            border-radius: 50%;
+            background-color: $active-green;
+            border: 2px solid $bright-primary;
+            text-align: center;
+            @include font(.65rem, 300, $text-bright-white);
         }
 
         // limits width of line, cuts text
@@ -121,6 +121,21 @@
         }
     }
 
+    // styles for selected dialog
+    .is-active{
+        background-color: $light-accent;
+
+        .message-indicator{
+            border: 2px solid $light-accent;
+        }
+
+
+        time {
+            background-color: $absolute-white;
+            color: $text-bright-accent;
+        }
+    }
+
     // hover styles for user-menu item
     li:hover {
         background-color: $light-primary;
@@ -128,11 +143,6 @@
         .message-indicator{
             border: 2px solid $light-primary;
         }
-    }
-
-    // styles for selected dialog
-    .is-active{
-        background-color: $light-accent;
 
         time {
             background-color: $absolute-white;

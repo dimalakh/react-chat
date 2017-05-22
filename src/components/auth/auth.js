@@ -1,34 +1,16 @@
 import './auth.scss';
 
 import  React, { Component } from 'react';
+import { LogIn } from './login';
+import { SignUp } from './signup';
 
 export class Auth extends Component{
     constructor (props) {
         super(props);
     }
     
-
     componentDidMount() {
-        this.props.onLogIn();
         this.isLoggedIn();
-    }
-
-    signup(e) {
-        e.preventDefault();
-        let name = document.querySelector('#auth-name'),
-            password = document.querySelector('#auth-password');
-        
-        this.props.onSignUp('signup', name.value, password.value)
-        //this.auth('signup', name.value, password.value);    
-    }
-
-    login(e) {
-        e.preventDefault();
-        let name = document.querySelector('#login-name'),
-            password = document.querySelector('#login-password');
-        
-        this.props.onLogIn('login', name.value, password.value, this.props.history)
-        //this.auth('login', name.value, password.value);    
     }
 
     isLoggedIn() {
@@ -37,6 +19,23 @@ export class Auth extends Component{
         }
     }
 
+    signup(e) {
+        e.preventDefault();
+        let name = document.querySelector('#auth-name').value;
+        let password = document.querySelector('#auth-password').value;
+        
+        this.props.onSignUp('signup', name, password);
+    }
+
+    login(e) {
+        e.preventDefault();
+        let name = document.querySelector('#login-name').value,
+            password = document.querySelector('#login-password').value;
+
+        this.props.onLogIn('login', name, password, this.props.history);
+    }
+
+    
     toggleAuth() {
         document.querySelector('#signup').classList.toggle('hidden');
         document.querySelector('#login').classList.toggle('hidden');
@@ -45,26 +44,8 @@ export class Auth extends Component{
     render() {
         return (
             <div className="auth-wrapper">
-                <div className="auth-form" id="login">
-                    <h1>Log in</h1>
-                    <span>or <a onClick={this.toggleAuth.bind(this)}>Sign up</a></span> 
-                    <label htmlFor="login-name">name:</label> 
-                    <input id="login-name" type="text" required /> 
-                    <label htmlFor="login-password">password:</label> 
-                    <input id="login-password" type="password" required /> 
-                    <button onClick={this.login.bind(this)}>submit</button>   
-                </div>
-                <div className="auth-form hidden" id="signup">
-                    <h1>Sign up</h1>
-                    <span>or <a onClick={this.toggleAuth.bind(this)}>Log in</a></span> 
-                    <label htmlFor="auth-name">name:</label> 
-                    <input id="auth-name" type="text" required /> 
-                    <label htmlFor="auth-email">email:</label> 
-                    <input id="auth-email" type="email" /> 
-                    <label htmlFor="auth-password">password:</label> 
-                    <input id="auth-password" type="password" required /> 
-                    <button onClick={this.signup.bind(this)}>submit</button>   
-                </div>
+                <LogIn toggler={this.toggleAuth.bind(this)} submition={this.login.bind(this)}/>
+                <SignUp toggler={this.toggleAuth.bind(this)} submition={this.signup.bind(this)}/>
             </div>
         );
     }

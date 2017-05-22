@@ -223,17 +223,17 @@ section.toggled {
       border-radius: 50%;
       background-size: 100% auto;
       background-position: center; }
-      .user-menu li .user-photo .message-indicator {
-        width: 18px;
-        height: 18px;
-        float: right;
-        border-radius: 50%;
-        background-color: #ed145b;
-        border: 2px solid #3B3E99;
-        text-align: center;
-        font-size: 0.65rem;
-        font-weight: 300;
-        color: #fff; }
+    .user-menu li .message-indicator {
+      width: 15px;
+      height: 15px;
+      float: right;
+      border-radius: 50%;
+      background-color: #15e81c;
+      border: 2px solid #3B3E99;
+      text-align: center;
+      font-size: 0.65rem;
+      font-weight: 300;
+      color: #fff; }
     .user-menu li .user-name,
     .user-menu li .short-message {
       max-width: calc(100% - 130px);
@@ -261,17 +261,53 @@ section.toggled {
       font-size: 0.7rem;
       font-weight: 300;
       color: rgba(255, 255, 255, 0.6); }
+  .user-menu .is-active {
+    background-color: #F23F79; }
+    .user-menu .is-active .message-indicator {
+      border: 2px solid #F23F79; }
+    .user-menu .is-active time {
+      background-color: #fff;
+      color: #ed145b; }
   .user-menu li:hover {
     background-color: #7073CC; }
     .user-menu li:hover .message-indicator {
       border: 2px solid #7073CC; }
-  .user-menu .is-active {
-    background-color: #F23F79; }
-    .user-menu .is-active time {
+    .user-menu li:hover time {
       background-color: #fff;
       color: #ed145b; }
 
 /* USER-MENU END */
+/* BACKGROUND COLORS*/
+/* TEXT COLORS*/
+/* RESOLUTIONS */
+/* OTHER VARIABLES*/
+/* MIXINS */
+.user-menu li.user-search-item {
+  padding: 15px 30px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #7073CC;
+  border-bottom: 1px solid #3B3E99; }
+  .user-menu li.user-search-item .message-indicator {
+    background-color: #15e81c;
+    border: 2px solid #7073CC; }
+  .user-menu li.user-search-item .user-add {
+    width: 50px;
+    padding: 3px 0;
+    text-align: center;
+    border-radius: 20px;
+    background-color: #fff;
+    font-size: 0.7rem;
+    font-weight: 300;
+    color: #ed145b; }
+
+.user-menu li.user-search-item:hover {
+  background-color: #ed145b;
+  border-bottom: 1px solid #ed145b; }
+  .user-menu li.user-search-item:hover .message-indicator {
+    border: 2px solid #ed145b; }
 /* BACKGROUND COLORS*/
 /* TEXT COLORS*/
 /* RESOLUTIONS */
@@ -537,7 +573,10 @@ section.toggled {
       border-radius: 10px;
       padding: 6px 10px;
       margin-bottom: 15px;
-      background: rgba(255, 255, 255, 0.18); }
+      background: rgba(255, 255, 255, 0.18);
+      transition: .1s; }
+    .auth-wrapper .auth-form .error {
+      background: rgba(255, 57, 57, 0.82); }
     .auth-wrapper .auth-form button {
       color: #fff;
       padding: 3px 0;

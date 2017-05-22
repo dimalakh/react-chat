@@ -44,6 +44,11 @@
             padding: 6px 10px;
             margin-bottom: 15px;
             background: rgba(255, 255, 255, 0.18);
+            transition: .1s;
+        }
+
+        .error {
+            background: $error;
         }
 
         button {
