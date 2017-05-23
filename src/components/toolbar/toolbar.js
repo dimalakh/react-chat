@@ -47,7 +47,6 @@ export class Toolbar extends Component {
             <nav className="toolbar">
                 <button onClick={this.handleDisplayDropdown} className="message-icon"></button>
                 <div id="settingsDropdown" className="dropdown-content">
-                    <input type="file" name="img" accept="image/jpeg,image/png,image/gif" onChange={this.uploadImg.bind(this)}/>
                     {/*<a data-lastHistory="-7" onClick={this.handleShowMessagesFrom.bind(this)}>Messages for last 2 days</a>
                     <a data-lastHistory="-7" onClick={this.handleShowMessagesFrom.bind(this)}>Messages for last 5 days</a>
                     <a data-lastHistory="-7" onClick={this.handleShowMessagesFrom.bind(this)}>Messages for last 7 days</a>*/}

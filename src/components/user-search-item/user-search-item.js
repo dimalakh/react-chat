@@ -8,7 +8,6 @@ export class UserSearchItem extends Component {
     }
 
     createConversation () {
-        console.log('hola');
         const usersIds = [
             JSON.parse(localStorage.getItem('data')).user._id,
             this.props.data._id
@@ -18,9 +17,13 @@ export class UserSearchItem extends Component {
     }
 
     render() {
+        const imageStyle = {
+            backgroundImage: 'url(' + this.props.data.image + ')',
+        };
+
         return (
              <li className="user-search-item" onClick={this.createConversation.bind(this)}>
-                <div className="user-photo">
+                <div className="user-photo" style={imageStyle}>
                         { 
                             this.props.data.online ?
                             <div className="message-indicator"></div> :
