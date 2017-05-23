@@ -16,6 +16,7 @@ export class Auth extends Component{
     isLoggedIn() {
         if(JSON.parse(localStorage.getItem('data'))){
             this.props.history.push('chat');
+            console.log('ola');
         }
     }
 
