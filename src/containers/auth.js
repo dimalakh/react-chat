@@ -1,17 +1,17 @@
 import { connect } from 'react-redux';
 
 import { Auth } from '../components/auth/auth';
-import { auth, signUp } from '../actions/auth';
+import { auth } from '../actions/auth';
 
-const mapStateToProps = (state) => ({
-  user: state
+const mapStateToProps = state => ({
+    user: state
 });
 
-const mapDispatchToProps = (dispatch) => ({
+const mapDispatchToProps = dispatch => ({
     onLogIn: (type, name, pass, history) => {
         dispatch(auth(type, name, pass, history));
     },
-    onSignUp: (type, name, pass, historyta) => {
+    onSignUp: (type, name, pass, history) => {
         dispatch(auth(type, name, pass, history));
     }
 });

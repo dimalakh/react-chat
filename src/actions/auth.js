@@ -25,7 +25,9 @@ export function auth (type, name, password, history) {
         switch (type) {
             case 'signup':
                 fetch(`${API_CONFIG.BASE}/auth/signup`, myInit)
-                .then(() => history.push('/auth/login'));
+                .then(data => {
+                    console.log(data);
+                });
             case 'login':
                 fetch(`${API_CONFIG.BASE}/auth/login`, myInit)
                 .then(res => res.json())
@@ -36,7 +38,9 @@ export function auth (type, name, password, history) {
                 .then(() => history.push('/chat'));
             default:
                 fetch(`${API_CONFIG.BASE}/auth/signup`, myInit)
-                .then(() => history.push('/auth/login'));
+                .then(data => {
+                    console.log(data);
+                });
         }
     };
 }

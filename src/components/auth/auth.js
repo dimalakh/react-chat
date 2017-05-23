@@ -16,7 +16,6 @@ export class Auth extends Component{
     isLoggedIn() {
         if(JSON.parse(localStorage.getItem('data'))){
             this.props.history.push('chat');
-            console.log('ola');
         }
     }
 
@@ -25,7 +24,7 @@ export class Auth extends Component{
         let name = document.querySelector('#auth-name').value;
         let password = document.querySelector('#auth-password').value;
         
-        this.props.onSignUp('signup', name, password);
+        this.props.onSignUp('signup', name, password, this.props.history);
     }
 
     login(e) {

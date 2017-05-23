@@ -19,6 +19,7 @@ export class Chat extends Component {
     }
 
     componentWillMount() {
+        this.isLoggedIn();
         // fromDate == datebefore in miliseconds
         this.props.onLoadStorage();
         const fromDate = moment().add(-1, 'days').format('x');
@@ -40,8 +41,12 @@ export class Chat extends Component {
         });
     }
 
+    componentRecieveProps() {
+        this.isLoggedIn();
+    }
+
     isLoggedIn() {
-        if(!JSON.parse(localStorage.getItem('data'))){
+        if (this.isEmpty(this.props.userData)) {
             this.props.history.push('auth');
         }
     }
@@ -72,9 +77,15 @@ export class Chat extends Component {
     createNewChat(userId, usersId) {
         this.props.onCreateCoversation(userId, usersId);
     }
+
+    isEmpty(obj) {
+        for (var key in obj) {
+            return false;
+        }
+        return true;
+    }
     
     render() {
-        
         return (
             <div className='chat'>
                 <Sidebar 
@@ -88,9 +99,17 @@ export class Chat extends Component {
                 getConversations={this.props.onReceiveConversations.bind(this)}
                 />
                 <section className="main-frame">
-                    <Toolbar history={this.props.history} showFromDate={this.showMessagesFromDate.bind(this)}/>
-                    <Messages loader={this.props.isLoading} messages={this.props.messageStore}/>
-                    <MessageForm send={this.sendMessage.bind(this)} />
+                    <Toolbar 
+                     history={this.props.history}
+                     showFromDate={this.showMessagesFromDate.bind(this)}
+                    />
+                    <Messages 
+                     loader={this.props.isLoading}
+                     messages={this.props.messageStore}
+                    />
+                    <MessageForm 
+                     send={this.sendMessage.bind(this)} 
+                    />
                 </section>
             </div>
         );
