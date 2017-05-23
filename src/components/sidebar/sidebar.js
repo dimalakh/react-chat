@@ -34,6 +34,7 @@ export class Sidebar extends Component {
                 sidebar: 'toggled'
             });
         }
+        this.clearUserSearch();
     }
     
     onCreateClick(usersIds) {

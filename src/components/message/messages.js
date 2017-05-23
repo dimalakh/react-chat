@@ -19,6 +19,7 @@ export class Messages extends Component {
     }
 
     render() {
+        
         const messagesArr = this.props.messages
             .filter((message) => {
                 return typeof(message.msg) != 'object';
@@ -29,10 +30,12 @@ export class Messages extends Component {
                 if(message.sender.username !== JSON.parse(localStorage.getItem('data')).user.username) {
                      messageType = 'is-answer';
                  }
-
+                 const imageStyle = {
+                        backgroundImage: 'url(' + message.sender.image + ')',
+                    };
                 return (      
                     <li key={index} className={messageType}>
-                        <div className="user-photo"></div>
+                        <div className="user-photo" style={imageStyle}></div>
                         <div className="chat-message">
                            <p>{/*{message.sender.username}:*/} {message.msg}</p>
                            <time className="message-time">{moment(message.date).format('HH:mm')}</time>

@@ -4,6 +4,8 @@ export default function conversations (state = initialState, action) {
     switch (action.type) {
         case 'RECEIVE_CONVERSATIONS':
             return action.conversations;
+        case 'RECEIVE_NEW_CONVERSATION':
+            return [...state, action.conversation];
         case 'CONVERSATION_UPDATE':
             return state.map(conv => {
                 if (conv._id === action.msg.conversationId)

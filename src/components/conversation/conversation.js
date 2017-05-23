@@ -34,15 +34,20 @@ export class Conversation extends Component {
     render() {
         const timeStamp = moment(this.props.data.lastMsg.date).format("HH:mm");
         const isActive = this.props.activeConversation === this.props.data._id ? 'is-active' : '';
+        let imgUrl;
         const conversationName = this.props.data.users.map((user) => {
             if ( user.username !== JSON.parse(localStorage.getItem('data')).user.username) {
+                imgUrl = user.image;
                 return  user.username;
             }
         });
+        const imageStyle = {
+            backgroundImage: 'url(' + imgUrl + ')',
+        };
         
         return (
             <li className={isActive} onClick={this.activateConversation.bind(this)}>
-                <div className="user-photo">
+                <div className="user-photo" style={imageStyle}>
                     { 
                         this.isOnline ?
                         <div className="message-indicator"></div> :

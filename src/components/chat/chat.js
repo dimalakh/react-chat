@@ -104,8 +104,10 @@ export class Chat extends Component {
                 />
                 <section className="main-frame">
                     <Toolbar 
+                    userData={this.props.userData}
                      history={this.props.history}
                      showFromDate={this.showMessagesFromDate.bind(this)}
+                     uploadUserImg={this.props.onUserImageLoad.bind(this)}
                     />
                     {this.props.activeConversation !== ''?
                    <div className="chat-content-wrapper">
@@ -115,7 +117,8 @@ export class Chat extends Component {
                     />
                     <MessageForm 
                      send={this.sendMessage.bind(this)} 
-                    /></div> :
+                     userData={this.userData}
+                     /></div> :
                         <div className="default-chat-screen">select chat</div>
                     }
                 </section>

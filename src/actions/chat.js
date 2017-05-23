@@ -120,6 +120,13 @@ export function fetchConversations (userId) {
     };
 }
 
+export function receiveNewConversation (conversation) {
+    return {
+        type: 'RECEIVE_NEW_CONVERSATION',
+        conversation
+    };
+}
+
 export function createConversation (creatorId, usersIdArr) {
     return dispatch => {
         let myHeaders = new Headers();
@@ -133,8 +140,10 @@ export function createConversation (creatorId, usersIdArr) {
             })
         };
         fetch(`${API_CONFIG.BASE}/chat/conversation`, myInit)
-        .then(() => {
-            dispatch(fetchConversations(creatorId));
+        .then(res => res.json())
+        .then(data => {
+            console.log(data);
+            dispatch(receiveNewConversation(data));
         });
     };
 }
@@ -144,4 +153,57 @@ export function fetchUsers () {
         fetch(`${API_CONFIG.BASE}/users`)
             .then(res => res.json())
     );
+}
+
+export function uploadUserImg (file, userId) {
+    return (dispatch) => {
+        let reader  = new FileReader();
+        reader.onloadend = function () {
+            let form = new FormData();
+
+            form.append('image',  reader.result.split(',')[1]);
+            let myHeaders = new Headers();
+            myHeaders.set('authorization', 'Client-ID 588ffba43d732db');
+            let myInit = {
+                async: true,
+                crossDomain: true,
+                method: 'post',
+                headers: myHeaders,
+                processData: false,
+                contentType: false,
+                mimeType: 'multipart/form-data',
+                body: form
+            };
+            fetch('https://api.imgur.com/3/upload', myInit)
+            .then(res => res.json())
+            .then(data => {
+                const img = data.data.link;
+                dispatch(setUserImg(img, userId));
+            });
+        };
+
+        if (file)
+            reader.readAsDataURL(file);
+    };
+}
+
+export function setUserImg (img, userId) {
+    return () => {
+        let myHeaders = new Headers();
+        myHeaders.set('Content-Type', 'application/json');
+        let myInit = {
+            method: 'put',
+            headers: myHeaders,
+            mode: 'cors',
+            body: JSON.stringify({
+                userId,
+                imgUrl: img
+            })
+        };
+        fetch(`${API_CONFIG.BASE}/users/image`, myInit)
+        .then(res => res.json())
+        .then(data => {
+            console.log(data);
+        });
+    };
 }

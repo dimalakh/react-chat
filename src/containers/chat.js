@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 
 import { Chat } from '../components/chat/chat';
-import { sendMessage, receiveNewMessage, fetchUsers, setOfflineUser, conversationUpdate, setOnlineUser, fetchMessages, setActiveConversation, loadLocalStorage, fetchConversations, createConversation } from '../actions/chat';
+import { sendMessage, uploadUserImg, receiveNewMessage, fetchUsers, setOfflineUser, conversationUpdate, setOnlineUser, fetchMessages, setActiveConversation, loadLocalStorage, fetchConversations, createConversation } from '../actions/chat';
 
 const mapStateToProps = state => {
     return {
@@ -48,6 +48,9 @@ const mapDispatchToProps = (dispatch) => ({
     },
     onConversationUpdate: msg => {
         dispatch(conversationUpdate(msg));
+    },
+    onUserImageLoad: (file, userId) => {
+        dispatch(uploadUserImg(file, userId));
     }
 });
 
