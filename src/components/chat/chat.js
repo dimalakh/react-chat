@@ -57,6 +57,7 @@ export class Chat extends Component {
     }
 
     handleReceiveNewMessage(msg) {
+        this.props.onConversationUpdate(msg);
         this.props.onReceiveNewMessage(msg);
     }
 
@@ -93,6 +94,7 @@ export class Chat extends Component {
                 createChat={this.createNewChat.bind(this)}
                 selectConversation={this.selectConversation.bind(this)}
                 conversations={this.props.conversationStore}
+                conversationsIsLoading={this.props.conversationsIsLoading}
                 getUsers={this.props.onReceiveUsers.bind(this)}
                 fetchedUsers={this.props.fetchedUsers}
                 userData={this.userData}

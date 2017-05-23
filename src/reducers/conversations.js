@@ -4,6 +4,20 @@ export default function conversations (state = initialState, action) {
     switch (action.type) {
         case 'RECEIVE_CONVERSATIONS':
             return action.conversations;
+        case 'CONVERSATION_UPDATE':
+            return state.map(conv => {
+                if (conv._id === action.msg.conversationId)
+                    return {
+                        _id: conv._id,
+                        users: conv.users,
+                        lastMsg: action.msg
+                    };
+                return {
+                    _id: conv._id,
+                    users: conv.users,
+                    lastMsg: conv.lastMsg
+                };
+            });
         case 'SET_ONLINE_USER':
             return state.map(conv => {
                 return {

@@ -71,6 +71,13 @@ export function setOfflineUser (userId) {
     };
 }
 
+export function conversationUpdate (msg) {
+    return {
+        type: 'CONVERSATION_UPDATE',
+        msg
+    };
+}
+
 export function loadAllUsers (users) {
     return {
         type: 'LOAD_ALL_USERS',
@@ -114,7 +121,7 @@ export function fetchConversations (userId) {
 }
 
 export function createConversation (creatorId, usersIdArr) {
-    return (dispatch) => {
+    return dispatch => {
         let myHeaders = new Headers();
         myHeaders.set('Content-Type', 'application/json');
         let myInit = {

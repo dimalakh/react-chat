@@ -83,6 +83,16 @@ export class Sidebar extends Component {
             );
         })
 
+        const loader = (
+                <div className="chat-body spiner-wrap">
+                    <div className="spinner">
+                        <div className="bounce1"></div>
+                        <div className="bounce2"></div>
+                        <div className="bounce3"></div>
+                    </div>
+                </div>
+        );
+        
          const conversationsArr = this.props.conversations.sort((current, next) => {
              if (current.lastMsg.date >= next.lastMsg.date) {
                  return -1;
@@ -123,3 +133,4 @@ export class Sidebar extends Component {
         );
     }
 } 
+

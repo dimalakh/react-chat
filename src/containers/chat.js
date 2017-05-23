@@ -1,9 +1,9 @@
 import { connect } from 'react-redux';
 
 import { Chat } from '../components/chat/chat';
-import { sendMessage, receiveNewMessage, fetchUsers, setOfflineUser, setOnlineUser, fetchMessages, setActiveConversation, loadLocalStorage, fetchConversations, createConversation } from '../actions/chat';
+import { sendMessage, receiveNewMessage, fetchUsers, setOfflineUser, conversationUpdate, setOnlineUser, fetchMessages, setActiveConversation, loadLocalStorage, fetchConversations, createConversation } from '../actions/chat';
 
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
     return {
         userData: state.userData,
         activeConversation: state.activeConversation,
@@ -12,8 +12,8 @@ const mapStateToProps = (state) => {
         isLoading: state.messagesIsLoading,
         conversationsIsLoading: state.conversationsIsLoading,
         fetchedUsers: state.allUsers
-    }
-}
+    };
+};
 
 const mapDispatchToProps = (dispatch) => ({
     onLoadStorage: () => {
@@ -45,6 +45,9 @@ const mapDispatchToProps = (dispatch) => ({
     },
     onReceiveUsers: () => {
         dispatch(fetchUsers());
+    },
+    onConversationUpdate: msg => {
+        dispatch(conversationUpdate(msg));
     }
 });
 
