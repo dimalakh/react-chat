@@ -87,6 +87,8 @@ export class Chat extends Component {
     }
     
     render() {
+        console.log(this.props.activeConversation);
+
         return (
             <div className='chat'>
                 <Sidebar 
@@ -105,13 +107,17 @@ export class Chat extends Component {
                      history={this.props.history}
                      showFromDate={this.showMessagesFromDate.bind(this)}
                     />
+                    {this.props.activeConversation !== ''?
+                   <div className="chat-content-wrapper">
                     <Messages 
                      loader={this.props.isLoading}
                      messages={this.props.messageStore}
                     />
                     <MessageForm 
                      send={this.sendMessage.bind(this)} 
-                    />
+                    /></div> :
+                        <div className="default-chat-screen">select chat</div>
+                    }
                 </section>
             </div>
         );
