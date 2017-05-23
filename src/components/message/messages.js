@@ -35,7 +35,7 @@ export class Messages extends Component {
                         <div className="user-photo"></div>
                         <div className="chat-message">
                            <p>{/*{message.sender.username}:*/} {message.msg}</p>
-                           <time className="message-time">{moment(message.time).format('HH:mm')}</time>
+                           <time className="message-time">{moment(message.date).format('HH:mm')}</time>
                         </div>
                     </li>
                 );
