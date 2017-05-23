@@ -3,6 +3,7 @@ import './messages.scss';
 import React, { Component } from 'react';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import moment from 'moment';
+import emoji from 'react-easy-emoji';
 
 export class Messages extends Component {
     constructor (props) {
@@ -33,11 +34,12 @@ export class Messages extends Component {
                  const imageStyle = {
                         backgroundImage: 'url(' + message.sender.image + ')',
                     };
+                const textMessage = emoji(message.msg);
                 return (      
                     <li key={index} className={messageType}>
                         <div className="user-photo" style={imageStyle}></div>
                         <div className="chat-message">
-                           <p>{/*{message.sender.username}:*/} {message.msg}</p>
+                           <p>{/*{message.sender.username}:*/} {textMessage}</p>
                            <time className="message-time">{moment(message.date).format('HH:mm')}</time>
                         </div>
                     </li>

@@ -2,6 +2,7 @@
 
 import  React, { Component } from 'react';
 import  moment from 'moment';
+import emoji from 'react-easy-emoji';
 
 export class Conversation extends Component {
     constructor (props) {
@@ -55,7 +56,7 @@ export class Conversation extends Component {
                      }
                 </div>
                 <div className="user-name">{conversationName}</div>
-                <div className="short-message">{this.props.data.lastMsg.msg}</div>
+                <div className="short-message">{emoji(this.props.data.lastMsg.msg)}</div>
                 <time>{timeStamp}</time>
             </li>   
         );
