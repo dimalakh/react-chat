@@ -67,6 +67,14 @@ export class Sidebar extends Component {
         })
     }
 
+    onToggleSearchClick() {
+        if (this.state.searchedUsers.length === 0) {
+            this.handleUserSearch();
+        } else {
+            this.clearUserSearch();
+        }
+    }
+
     onConversationClick(conversation) {
         this.props.selectConversation(conversation._id);
     }
@@ -117,14 +125,14 @@ export class Sidebar extends Component {
                 <nav className="sidebar-nav">
                     <button onClick={this.hendlerToggleSidebar.bind(this)} className="sidebar-toggle"></button>
                     <form>
-                        <input type="search"
+                        <input
                          onFocus={this.handleUserSearch.bind(this)}
                          onChange={this.handleUserSearch.bind(this)}
                          ref={(input) => { this.searchInput = input; }}
                         />
                         <button className="search-icon"></button>
                     </form>
-                    <button id="menu-toggler" onClick={this.onCreateClick.bind(this)} className="menu-icon"></button>
+                    <button id="menu-toggler" onClick={this.onToggleSearchClick.bind(this)} className="menu-icon"></button>
                 </nav>
                 <ul className="user-menu scrollable">
                     { searchUsersArr }
