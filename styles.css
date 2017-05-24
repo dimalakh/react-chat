@@ -205,7 +205,7 @@ section.toggled {
     content: "";
     width: 22px;
     height: 22px;
-    background-image: url("/react-chat/react-chat/images/sprite.svg");
+    background-image: url("/react-chat/images/sprite.svg");
     background-position: 0 0;
     background-repeat: no-repeat; }
 
