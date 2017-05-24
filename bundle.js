@@ -8857,7 +8857,7 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 var API_CONFIG = exports.API_CONFIG = {
-    BASE: 'http://localhost:8080' //'https://secret-eyrie-10811.herokuapp.com'
+    BASE: 'https://secret-eyrie-10811.herokuapp.com'
 };
 
 /***/ }),
