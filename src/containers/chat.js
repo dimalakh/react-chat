@@ -25,8 +25,8 @@ const mapDispatchToProps = (dispatch) => ({
     onReceiveNewMessage: (msg) => {
         dispatch(receiveNewMessage(msg));
     },
-    onReceiveMessages: (fromDate) => {
-        dispatch(fetchMessages(fromDate));
+    onReceiveMessages: (chatId, fromDate) => {
+        dispatch(fetchMessages(chatId, fromDate));
     },
     onReceiveConversations: (userId) => {
         dispatch(fetchConversations(userId));

@@ -5,6 +5,7 @@ import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import moment from 'moment';
 import emoji from 'react-easy-emoji';
 
+
 export class Messages extends Component {
     constructor (props) {
         super(props);
@@ -59,7 +60,12 @@ export class Messages extends Component {
         } else {
             return (
                 <ul className="chat-body scrollable">
+                    {/*<ReactCSSTransitionGroup
+                    transitionName="example"
+                    transitionEnterTimeout={150}
+                    transitionLeaveTimeout={200}>*/}
                     {messagesArr}
+                {/*    </ReactCSSTransitionGroup>*/}
                 </ul>
             );
         }

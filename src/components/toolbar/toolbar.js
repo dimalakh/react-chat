@@ -8,7 +8,7 @@ export class Toolbar extends Component {
     }
 
     handleShowMessagesFrom (e) {
-        this.props.showFromDate(e.target.dataset.lasthistory);
+        this.props.showFromDate(this.props.activeConversation, e.target.dataset.lasthistory);
         document.querySelector('#settingsDropdown').classList.toggle('show');
     }
 
@@ -47,9 +47,9 @@ export class Toolbar extends Component {
             <nav className="toolbar">
                 <button onClick={this.handleDisplayDropdown} className="message-icon"></button>
                 <div id="settingsDropdown" className="dropdown-content">
-                    {/*<a data-lastHistory="-7" onClick={this.handleShowMessagesFrom.bind(this)}>Messages for last 2 days</a>
-                    <a data-lastHistory="-7" onClick={this.handleShowMessagesFrom.bind(this)}>Messages for last 5 days</a>
-                    <a data-lastHistory="-7" onClick={this.handleShowMessagesFrom.bind(this)}>Messages for last 7 days</a>*/}
+                    <a data-lastHistory="-2" onClick={this.handleShowMessagesFrom.bind(this)}>Messages for last 2 days</a>
+                    <a data-lastHistory="-7" onClick={this.handleShowMessagesFrom.bind(this)}>Messages for last week</a>
+                    <a data-lastHistory="-30" onClick={this.handleShowMessagesFrom.bind(this)}>Messages for last month</a>
                 </div>
                 <button onClick={this.handleUserMenuDropdown} className="user-icon"></button>
                 <div id="userMenuDropdown" className="dropdown-content">
@@ -59,7 +59,7 @@ export class Toolbar extends Component {
                     </ul>
                 </div>
                 <div className="user-settings">
-                    <img src="https://unsplash.it/200/200?image=904" />
+                    <img src="http://partss.net/wp-content/uploads/img/no_image-450x300.jpg" />
                     <div className="upload">
                         <span>Choose file</span>
                         <input type="file" name="img" accept="image/jpeg,image/png,image/gif" onChange={this.uploadImg.bind(this)}/>

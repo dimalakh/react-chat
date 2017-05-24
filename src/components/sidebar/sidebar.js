@@ -4,6 +4,7 @@ import  React, { Component } from 'react';
 import  moment from 'moment';
 import { Conversation } from '../conversation/conversation';
 import { UserSearchItem } from '../user-search-item/user-search-item';
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import { API_CONFIG } from '../../api-config';
 
 export class Sidebar extends Component {
@@ -135,8 +136,18 @@ export class Sidebar extends Component {
                     <button id="menu-toggler" onClick={this.onToggleSearchClick.bind(this)} className="menu-icon"></button>
                 </nav>
                 <ul className="user-menu scrollable">
+                    <ReactCSSTransitionGroup
+                    transitionName="example"
+                    transitionEnterTimeout={200}
+                    transitionLeaveTimeout={200}>
                     { searchUsersArr }
+                    </ReactCSSTransitionGroup>
+                    <ReactCSSTransitionGroup
+                    transitionName="example"
+                    transitionEnterTimeout={200}
+                    transitionLeaveTimeout={200}>
                     { conversationsArr }
+                    </ReactCSSTransitionGroup>
                 </ul>
             </aside>    
         );

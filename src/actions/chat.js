@@ -1,5 +1,6 @@
 import { API_CONFIG } from '../api-config.js';
 import fetch from 'isomorphic-fetch';
+import moment from 'moment';
 
 function messagesIsLoading (bool) {
     return {
@@ -93,10 +94,11 @@ export function loadLocalStorage () {
     };
 }
 
-export function fetchMessages (conversationId) {
+export function fetchMessages (conversationId, fromDate = moment().subtract(1,'d').format('x')) {
     return dispatch => {
+        console.log(moment().subtract(7,'d').format('x'));
         dispatch(messagesIsLoading(true));
-        fetch(`${API_CONFIG.BASE}/chat/conversation/${conversationId}`)
+        fetch(`${API_CONFIG.BASE}/chat/conversation/${conversationId}/${fromDate}`)
         .then(res => {
             dispatch(messagesIsLoading(false));
             return res;

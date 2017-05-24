@@ -59,7 +59,7 @@
             display: block;
             font-size: .9rem;
             cursor: pointer;
-            text-align: center;
+            text-align: left;
         }
 
         a:hover, li:hover {
@@ -68,8 +68,12 @@
     }
 
     #userMenuDropdown {
-        right: 30px;
-        max-width: 80px;
+        right: 30px; 
+        max-width: 80px; 
+    
+        li {
+            text-align: center;
+        }
     }
 
     .show {

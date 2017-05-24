@@ -51,9 +51,9 @@ export class Chat extends Component {
         }
     }
 
-    showMessagesFromDate(days) {
+    showMessagesFromDate(chatId, days) {
         const fromDate = moment().add(days, 'days').format('x');
-        this.props.onReceiveMessages(fromDate);
+        this.props.onReceiveMessages(chatId, fromDate);
     }
 
     handleReceiveNewMessage(msg) {
@@ -87,7 +87,6 @@ export class Chat extends Component {
     }
     
     render() {
-        console.log(this.props.activeConversation);
 
         return (
             <div className='chat'>
@@ -105,6 +104,7 @@ export class Chat extends Component {
                 <section className="main-frame">
                     <Toolbar 
                     userData={this.props.userData}
+                    activeConversation={this.props.activeConversation}
                      history={this.props.history}
                      showFromDate={this.showMessagesFromDate.bind(this)}
                      uploadUserImg={this.props.onUserImageLoad.bind(this)}
