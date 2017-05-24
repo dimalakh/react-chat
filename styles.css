@@ -197,7 +197,7 @@ section.toggled {
     content: "";
     width: 25px;
     height: 25px;
-    background-image: url("/react-chat/react-chat/images/sprite.svg");
+    background-image: url("/react-chat/images/sprite.svg");
     background-position: 2px -38px;
     background-repeat: no-repeat; }
   .sidebar-nav .menu-icon:before {
