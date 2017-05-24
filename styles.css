@@ -197,7 +197,7 @@ section.toggled {
     content: "";
     width: 25px;
     height: 25px;
-    background-image: url("/images/sprite.svg");
+    background-image: url("/react-chat/react-chat/images/sprite.svg");
     background-position: 2px -38px;
     background-repeat: no-repeat; }
   .sidebar-nav .menu-icon:before {
@@ -205,7 +205,7 @@ section.toggled {
     content: "";
     width: 22px;
     height: 22px;
-    background-image: url("/images/sprite.svg");
+    background-image: url("/react-chat/react-chat/images/sprite.svg");
     background-position: 0 0;
     background-repeat: no-repeat; }
 
@@ -353,12 +353,12 @@ section.toggled {
   .toolbar .message-icon {
     position: relative; }
   .toolbar .message-icon:before {
-    background-image: url("/images/sprite.svg");
+    background-image: url("/react-chat/images/sprite.svg");
     display: block;
     content: "";
     width: 25px;
     height: 17px;
-    background-image: url("/images/sprite.svg");
+    background-image: url("/react-chat/images/sprite.svg");
     background-position: 0 -22px;
     background-repeat: no-repeat; }
   .toolbar .message-icon:after {
@@ -376,12 +376,12 @@ section.toggled {
   .toolbar .user-icon {
     float: right; }
   .toolbar .user-icon:before {
-    background-image: url("/images/sprite.svg");
+    background-image: url("/react-chat/images/sprite.svg");
     display: block;
     content: "";
     width: 18px;
     height: 18px;
-    background-image: url("/images/sprite.svg");
+    background-image: url("/react-chat/images/sprite.svg");
     background-position: 0 -64px;
     background-repeat: no-repeat; }
   .toolbar .dropdown-content {
@@ -586,12 +586,12 @@ section.toggled {
     right: 65px;
     width: 22px;
     height: 22px;
-    background-image: url("/images/sprite.svg");
+    background-image: url("/react-chat/images/sprite.svg");
     display: block;
     content: "";
     width: 22px;
     height: 22px;
-    background-image: url("/images/sprite.svg");
+    background-image: url("/react-chat/images/sprite.svg");
     background-position: -27px -25px;
     background-repeat: no-repeat; }
   .chat-message-form .file-icon {
@@ -609,7 +609,7 @@ section.toggled {
       content: "";
       width: 22px;
       height: 22px;
-      background-image: url("/images/sprite.svg");
+      background-image: url("/react-chat/images/sprite.svg");
       background-position: -27px -2px;
       background-repeat: no-repeat; }
   .chat-message-form .file-icon:focus + label,
