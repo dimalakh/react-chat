@@ -8857,7 +8857,7 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 var API_CONFIG = exports.API_CONFIG = {
-    BASE: 'https://secret-eyrie-10811.herokuapp.com'
+    BASE: 'http://localhost:8080' //https://secret-eyrie-10811.herokuapp.com'
 };
 
 /***/ }),
@@ -30591,7 +30591,7 @@ var _createBrowserHistory2 = _interopRequireDefault(_createBrowserHistory);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
-var history = exports.history = (0, _createBrowserHistory2['default'])({ basename: '/react-chat' });
+var history = exports.history = (0, _createBrowserHistory2['default'])();
 var store = exports.store = (0, _redux.createStore)(_index2['default'], _chat.initialState, (0, _reduxDevtoolsExtension.composeWithDevTools)((0, _redux.applyMiddleware)(_reduxThunk2['default'])));
 
 /***/ }),
@@ -32265,7 +32265,7 @@ var Toolbar = exports.Toolbar = function (_Component) {
                     _react2['default'].createElement(
                         'div',
                         { className: 'user-settings' },
-                        _react2['default'].createElement('img', { src: 'http://partss.net/wp-content/uploads/img/no_image-450x300.jpg' }),
+                        _react2['default'].createElement('img', { src: 'http://www.manitoulinmall.com/wp-content/themes/simply-responsive-cp-1351/images/no-thumb-250.jpg' }),
                         _react2['default'].createElement(
                             'div',
                             { className: 'upload' },
@@ -32278,7 +32278,7 @@ var Toolbar = exports.Toolbar = function (_Component) {
                         ),
                         _react2['default'].createElement(
                             'a',
-                            { href: 'http://localhost:9000/chat' },
+                            { href: 'https://dimalakh.github.io/react-chat/chat' },
                             'back to chat'
                         )
                     )
